@@ -1,0 +1,28 @@
+/*Animaciones*/
+@keyframes fade-in {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  @keyframes rotate {
+    0% {
+      rotate: 0;
+    }
+    100% {
+      rotate: 360deg;
+    }
+  }
+  @keyframes pop {
+    0% {
+      transform: scaleX(1);
+    }
+    50% {
+      transform: scaleX(0);
+    }
+    100% {
+      transform: scaleX(1);
+    }
+  }

@@ -1,8 +1,8 @@
 <template>
   <div class="modal">
-    <div class="componente-cristal modal-contenedor">
-      <label class="modal-titulo">¿Está seguro de que desea eliminar el libro?</label>
-      <div class="modal-botones">
+    <div class="componente-cristal modal__contenedor">
+      <label class="modal__titulo">¿Está seguro de que desea eliminar el libro?</label>
+      <div class="modal__botones">
         <button class="componente-cristal" @click="aceptar(props.codigo)">Aceptar</button>
         <button class="componente-cristal" @click="cancelar()">Cancelar</button>
       </div>

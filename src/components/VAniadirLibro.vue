@@ -36,7 +36,6 @@
 <script setup>
 import { ref } from 'vue';
 import { nuevoLibro } from '../code/controller.js';
-import './../assets/modal.css'
 const titulo = ref('')
 const autor = ref('')
 const anio = ref(0)

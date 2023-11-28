@@ -5,8 +5,8 @@
       class="componente-cristal modal-contenedor"
       @submit.prevent="aceptar(props.codigo)"
     >
-      <label class="modal-titulo">Por favor, provéenos los datos del libro a modificar:</label>
-      <div class="modal-inputs">
+      <label class="modal__titulo">Por favor, provéenos los datos del libro a modificar:</label>
+      <div class="modal__inputs">
         <label for="titulo">
           <span>Título: </span>
           <input type="text" v-model="titulo" />
@@ -28,7 +28,7 @@
           <textarea name="t_area" id="area_t" cols="30" rows="10" v-model="contenido"></textarea>
         </label>
       </div>
-      <div class="modal-botones">
+      <div class="modal__botones">
         <button type="submit" class="componente-cristal">Aceptar</button>
         <button class="componente-cristal" @click="cancelar()">Cancelar</button>
       </div>

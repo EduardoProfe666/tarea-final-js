@@ -15,14 +15,14 @@
   width: 100%;
   height: 100%;
 }
-.modal-contenedor {
+.modal__contenedor {
   background: rgba(255, 200, 161, 0.29);
   width: 500px;
   display: flex;
   align-items: center;
   flex-direction: column;
 }
-.modal-inputs {
+.modal__inputs {
   height: 80%;
   width: 80%;
   overflow: auto;
@@ -30,21 +30,21 @@
   align-items: center;
   flex-direction: column;
 }
-.modal-botones {
+.modal__botones {
   display: flex;
   justify-content: center;
   gap: 50%;
   padding: 5%;
 }
 
-.modal-inputs label {
+.modal__inputs label {
   font-size: 20px;
   margin: 5px;
   display: flex;
   flex-direction: column;
   width: 90%;
 }
-.modal-titulo {
+.modal__titulo {
   font-size: 25px;
   margin-top: 3%;
   width: 80%;
@@ -61,20 +61,4 @@
 
 .modal textarea:focus {
   height: 60px;
-}
-
-@media only screen and (max-width: 700px) {
-  .modal-contenedor {
-    width: 300px;
-  }
-  .modal-titulo {
-    font-size: 18px;
-  }
-  .modal-inputs label,
-  .modal textarea {
-    font-size: 14px;
-  }
-  .modal button {
-    font-size: 15px;
-  }
 }

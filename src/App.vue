@@ -24,60 +24,69 @@ useEventEmitter().listen('eliminar_libro', (event) => {
 </script>
 
 <template>
-  <VBarraNavegacion
-    v-on:aniadir_libro="() => (mostrar_componente_aniadir = true)"
-  ></VBarraNavegacion>
-  <div class="main">
-    <VEstanteria v-on:enviar_libro="(value) => (libro = value)"></VEstanteria>
-    <VCarta
-      v-on:modificar_libro="() => (mostrar_componente_modificar = true)"
-      v-if="libro"
-      :codigo="libro.getId()"
-      :titulo="libro.getTitulo()"
-      :autor="libro.getAutor()"
-      :anio="libro.getAnnoPublicacion()"
-      :publicador="libro.getPublicador()"
-      :contenido="libro.getContenido()"
-      :cover="libro.getCover()"
-    ></VCarta>
-    <div v-else class="label-selecciona-un-libro">
-      <label>Selecciona un libro</label>
+  <header>
+    <VBarraNavegacion
+      v-on:aniadir_libro="() => (mostrar_componente_aniadir = true)"
+    ></VBarraNavegacion>
+  </header>
+
+  <main class="centrado">
+    <div class="main__content centrado">
+      <VEstanteria v-on:enviar_libro="(value) => (libro = value)"></VEstanteria>
+      <VCarta
+        v-on:modificar_libro="() => (mostrar_componente_modificar = true)"
+        v-if="libro"
+        :codigo="libro.getId()"
+        :titulo="libro.getTitulo()"
+        :autor="libro.getAutor()"
+        :anio="libro.getAnnoPublicacion()"
+        :publicador="libro.getPublicador()"
+        :contenido="libro.getContenido()"
+        :cover="libro.getCover()"
+      ></VCarta>
+      <div v-else class="label-selecciona-un-libro">
+        <label>Selecciona un libro</label>
+      </div>
+      <VAniadirLibro
+        v-on:cerrar="() => (mostrar_componente_aniadir = false)"
+        v-if="mostrar_componente_aniadir === true"
+      ></VAniadirLibro>
+      <VEliminarLibro
+        v-on:cancelar="() => (mostrar_componente_eliminar.show = false)"
+        v-on:aceptar="(id) => eliminar_carta(id)"
+        v-if="mostrar_componente_eliminar.show === true"
+        :codigo="mostrar_componente_eliminar.id"
+      ></VEliminarLibro>
+      <VModificarLibro
+        v-on:cerrar="() => (mostrar_componente_modificar = false)"
+        v-if="mostrar_componente_modificar === true"
+        :codigo="libro.getId()"
+        :titulo="libro.getTitulo()"
+        :autor="libro.getAutor()"
+        :anio="libro.getAnnoPublicacion()"
+        :publicador="libro.getPublicador()"
+        :contenido="libro.getContenido()"
+      ></VModificarLibro>
     </div>
-    <VAniadirLibro
-      v-on:cerrar="() => (mostrar_componente_aniadir = false)"
-      v-if="mostrar_componente_aniadir === true"
-    ></VAniadirLibro>
-    <VEliminarLibro
-      v-on:cancelar="() => (mostrar_componente_eliminar.show = false)"
-      v-on:aceptar="(id) => eliminar_carta(id)"
-      v-if="mostrar_componente_eliminar.show === true"
-      :codigo="mostrar_componente_eliminar.id"
-    ></VEliminarLibro>
-    <VModificarLibro
-      v-on:cerrar="() => (mostrar_componente_modificar = false)"
-      v-if="mostrar_componente_modificar === true"
-      :codigo="libro.getId()"
-      :titulo="libro.getTitulo()"
-      :autor="libro.getAutor()"
-      :anio="libro.getAnnoPublicacion()"
-      :publicador="libro.getPublicador()"
-      :contenido="libro.getContenido()"
-    ></VModificarLibro>
-  </div>
+  </main>
 </template>
 
 <style scoped>
 .label-selecciona-un-libro {
   width: 60%;
   font-size: 40px;
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  align-items: center;
 }
-.main {
-  height: 80vh;
-  display: flex;
-  margin-top: 45px;
+.main__content {
+  flex-direction: column; 
+}
+@media (min-width: 768px) {
+  .main__content {
+    flex-direction: row;
+    gap: 10rem;
+  }
+}
+.main__content{
+  margin-top: 10rem;
+  gap: 2rem;
 }
 </style>

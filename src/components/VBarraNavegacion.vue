@@ -58,7 +58,12 @@ const refrescarBuscadores = () => {
 .barranavegacion {
   display: flex;
   flex-direction: row;
-  margin-top: 15px;
+  position: fixed;
+  backdrop-filter: blur(12.1px);
+  -webkit-backdrop-filter: blur(12.1px);
+  background-color: rgba(0, 0, 0, 0.3);
+  height: 8rem;
+  width: 100%;
 }
 .contenedor-buscador {
   width: 50%;
@@ -113,11 +118,5 @@ form {
 }
 form input {
   margin-right: 10px;
-}
-@media only screen and (max-width: 700px) {
-  .boton-aniadir {
-    min-width: 130px;
-    width: 130px;
-  }
 }
 </style>

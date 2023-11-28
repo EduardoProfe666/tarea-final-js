@@ -22,7 +22,7 @@ const data = ref([]);
 
 const libros = computed(() => data.value)
 
-const emit = defineEmits(['enviar_libro', 'eliminar_libro'])
+const emit = defineEmits(['enviar_libro'])
 
 const enviar_libro_para_carta = async (id)=>{
     const libro = await buscarLibroporID(id);
@@ -41,18 +41,33 @@ onMounted(async ()=>{
 
 <style scoped>
 .estanteria {
-  padding: 20px;
-  display: flex;
-  min-width: 200px;
-  flex-direction: column;
-  margin-left: 10%;
-  margin-right: 5%;
+  flex-direction: row;
   overflow: auto;
+  width: 30rem;
+  height: 18vh;
   box-shadow: 0px 0px 8px white;
+  gap: 2rem;
+  order:2;
 }
-@media only screen and (max-width: 700px) {
+@media (min-width: 480px) {
   .estanteria{
-    min-width: 130px;
-  }
+    width: 45rem;
+  } 
 }
+@media (min-width: 768px) {
+  .estanteria{
+    width: 20rem;
+    height: 80vh;
+    flex-direction: column;
+    order:1;
+  }
+  
+}
+@media (min-width: 1024px) {
+  .estanteria{
+    width: 25rem;
+  }
+  
+}
+
 </style>

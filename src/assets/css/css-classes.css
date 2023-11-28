@@ -1,0 +1,40 @@
+.centrado {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  text-align: center;
+}
+/*Componente transparente*/
+.componente-cristal {
+  backdrop-filter: blur(12.1px);
+  -webkit-backdrop-filter: blur(12.1px);
+  border-color: white;
+  border-radius: 15px;
+  border-style: solid;
+  text-align: center;
+  align-items: center;
+  display: flex;
+  transition: all ease 250ms;
+  outline: none;
+}
+.boton-mini {
+  transition: all ease 250ms;
+  size: 3rem;
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 1rem black;
+  display: flex;
+  justify-content: center;
+}
+.boton-mini img {
+  size: 100%;
+  user-select: none;
+  pointer-events: none;
+}
+.boton-mini:hover {
+  scale: 1.2;
+  cursor: pointer;
+}
+.boton-mini:active {
+  scale: 1.4;
+}
