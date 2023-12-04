@@ -3,7 +3,7 @@
     <form
       action=""
       class="componente-cristal modal-contenedor"
-      @submit.prevent="aceptar(props.codigo)"
+      @submit.prevent="aceptar()"
     >
       <label class="modal__titulo">Por favor, provéenos los datos del libro a modificar:</label>
       <div class="modal__inputs">
@@ -38,27 +38,27 @@
 <script setup>
 import { ref } from 'vue'
 import { editarLibro } from '../code/controller'
+import { useCRUDStore } from '../stores/crudStore'
+import { Libro } from '../code/libro';
+
+const crudStore = useCRUDStore()
 const props = defineProps({
-  codigo: String,
-  titulo: String,
-  autor: String,
-  anio: Number,
-  publicador: String,
-  contenido: String
+  libro:Libro,
 })
+const titulo = ref(props.libro.getTitulo())
+const autor = ref(props.libro.getAutor())
+const anio = ref(props.libro.getAnnoPublicacion())
+const publicador = ref(props.libro.getPublicador())
+const contenido = ref(props.libro.getContenido())
 
-const titulo = ref(props.titulo)
-const autor = ref(props.autor)
-const anio = ref(props.anio)
-const publicador = ref(props.publicador)
-const contenido = ref(props.contenido)
-
-const emit = defineEmits(['cerrar'])
-const cancelar = () => emit('cerrar')
-const aceptar = async (id) => {
+const cancelar = () => crudStore.switchModificar()
+const aceptar = async () => {
   try {
-    await editarLibro(id, titulo.value, autor.value, anio.value, publicador.value, contenido.value)
-    emit('cerrar', id)
+    await editarLibro(props.libro.getId(), titulo.value, autor.value, anio.value, publicador.value, contenido.value)
+    const libro = props.libro
+    crudStore.setLibroActual(null)
+    crudStore.setLibroActual(libro)
+    crudStore.switchModificar()
   } catch (e) {
     alert(e.message)
   }

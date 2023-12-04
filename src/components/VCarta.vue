@@ -1,57 +1,67 @@
 <template>
   <div class="componente-cristal carta">
-    <img class="carta__cover" :src="props.cover" />
-    <label class="carta__titulo">{{ props.titulo }}</label>
-    <label class="carta__subtitulo">por {{ props.autor }}</label>
-    <label class="carta__subtitulo">publicado por {{ props.publicador }} en {{ props.anio }}</label>
-    <p class="carta__contenido">{{ props.contenido }}</p>
+    <Transition name="fade"><div class="carta__info" v-if="crudStore.getLibroActual">
+      <img class="carta__cover" :src="`http://localhost:3000/files/cover/${crudStore.getLibroActual.cover_url.split('/')[2]}`" />
+      <span class="carta__titulo">{{ crudStore.getLibroActual.titulo }}</span>
+      <span class="carta__subtitulo">por {{ crudStore.getLibroActual.autor }}</span>
+      <span class="carta__subtitulo"
+        >publicado por {{ crudStore.getLibroActual.publicador }} en
+        {{ crudStore.getLibroActual.anno_publicacion }}</span
+      >
+      <p class="carta__contenido">{{ crudStore.getLibroActual.sinopsis }}</p>
+    </div>
+      <span v-else class="placeholder-span">Selecciona un libro</span>
+    </Transition>
     <div class="carta__botones">
-      <img
+      <img class="boton-aniadir boton-mini" src="/icons/add_icon.png" @click="aniadirLibro()" />
+      <Transition name="fade"><img
+        v-if="crudStore.getLibroActual"
         class="boton-modificar boton-mini"
         src="/icons/edit_icon.png"
-        @click="modificar_libro(props.codigo)"
-      />
-      <img
-        @click="emit_eliminar(props.codigo)"
+        @click="modificarLibro()"
+      /></Transition>
+      <Transition name="fade"><img
+        v-if="crudStore.getLibroActual"
+        @click="eliminarLibro()"
         class="boton-borrar boton-mini"
         src="/icons/delete_icon.png"
-      />
+      /></Transition>
     </div>
   </div>
 </template>
 <script setup>
-import { useEventEmitter } from '../code/useEventEmitter'
-const props = defineProps({
-  codigo: String,
-  titulo: String,
-  autor: String,
-  anio: Number,
-  publicador: String,
-  contenido: String,
-  cover: {
-    type: String,
-    default: '/covers/default.png',
-    required: true
-  }
-})
-const emit = defineEmits(['modificar_libro','eliminar_libro'])
+import { useCRUDStore } from '../stores/crudStore'
+const crudStore = useCRUDStore()
 
-const modificar_libro = (id) => emit('modificar_libro', id)
-const emit_eliminar = (id) => {
-  useEventEmitter().dispatchEvent('eliminar_libro', id)
+const aniadirLibro = () => {
+  crudStore.switchAniadir()
+}
+const modificarLibro = () => {
+  crudStore.switchModificar()
+}
+const eliminarLibro = () => {
+  crudStore.switchEliminar()
 }
 </script>
 
-<style scoped>
+<style>
 .carta {
-  box-shadow: 0px 0px 8px white;
+  box-shadow: 0 0 0.8rem white;
   flex-direction: column;
-  overflow: auto;
+  
   width: 30rem;
   height: 65vh;
 }
-.carta > * {
+
+.carta__info > * {
   margin: auto 2rem;
+}
+.carta__info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  overflow: auto;
 }
 
 .carta__cover {
@@ -61,6 +71,7 @@ const emit_eliminar = (id) => {
   width: 20rem;
   pointer-events: none;
   user-select: none;
+  margin: 2rem;
   box-shadow: 0 0 0.8rem white;
 }
 .carta__titulo {
@@ -74,20 +85,19 @@ const emit_eliminar = (id) => {
   font-size: 1.5rem;
   text-align: justify;
 }
-.carta__botones{
+.carta__botones {
   display: flex;
   flex-direction: column;
   position: absolute;
   left: 1rem;
   top: 1rem;
   margin: 0;
-  opacity: 0;
   transition: all ease 250ms;
   gap: 1.5rem;
 }
-
-.carta:hover .carta__botones {
-  opacity: 1;
+.placeholder-span{
+  font-size: 3rem;
+  margin: auto;
 }
 @media (min-width: 768px) {
   .carta {

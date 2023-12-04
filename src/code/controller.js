@@ -22,9 +22,20 @@ export const editarLibro = async (id, titulo, autor, anio, publicador, contenido
 }
 
 export const buscarLibroporID = async (id) =>{
-    return biblioteca.buscarLibro(id);
+    const response = await fetch(`http://localhost:3000/books/${id}`,{
+        mode:'cors'
+    })
+    const book = await response.json()
+    return book
+    //return biblioteca.buscarLibro(id);
 }
 
 export const solicitarLibros = async (titulo="", autor="", anno, publicador="") => {
-    return biblioteca.buscarLibros(titulo, autor, anno, publicador);
+    const response =await fetch('http://localhost:3000/books',{
+        mode: 'cors'
+    })
+    const books = await response.json()
+    console.log(books);
+    return books
+//    return biblioteca.buscarLibros(titulo, autor, anno, publicador);
 }

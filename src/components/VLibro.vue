@@ -1,15 +1,23 @@
 <template>
-  <div class="libro" @click="emit('enviar_id', props.codigo)">
-    <img class="caratula" :src="props.thumbnail" />
+  <div class="libro" @click="mostrarLibroEnCarta()">
+    <img class="caratula" :src="`http://localhost:3000/files/cover/${props.thumbnail.split('/')[2]}`" />
   </div>
 </template>
 
 <script setup>
+import { buscarLibroporID } from '../code/controller'
+import { useCRUDStore } from '../stores/crudStore'
 const props = defineProps({
-  codigo: String,
+  codigo: Number,
   thumbnail: String
 })
-const emit = defineEmits(['enviar_id'])
+
+const crudStore = useCRUDStore()
+
+const mostrarLibroEnCarta = async () => {
+  crudStore.setLibroActual(null)
+  buscarLibroporID(props.codigo).then((response) => crudStore.setLibroActual(response))
+}
 </script>
 <style scoped>
 .libro {
@@ -19,6 +27,7 @@ const emit = defineEmits(['enviar_id'])
   animation-duration: 1s;
   animation-name: fade-in;
   transition: all ease 250ms;
+  margin: 1rem;
 }
 .libro:hover {
   scale: 1.1;

@@ -1,83 +1,35 @@
 <script setup>
-import { ref } from 'vue'
 import VEstanteria from './components/VEstanteria.vue'
 import VCarta from './components/VCarta.vue'
 import VBarraNavegacion from './components/VBarraNavegacion.vue'
 import VAniadirLibro from './components/VAniadirLibro.vue'
 import VEliminarLibro from './components/VEliminarLibro.vue'
 import VModificarLibro from './components/VModificarLibro.vue'
-import { useEventEmitter } from './code/useEventEmitter'
-
-const libro = ref(null)
-const mostrar_componente_aniadir = ref(false)
-const mostrar_componente_modificar = ref(false)
-const mostrar_componente_eliminar = ref({ show: false, id: '' })
-const eliminar_carta = (id) => {
-  mostrar_componente_eliminar.value.show = false
-  if (libro.value !== null && id === libro.value.getId()) libro.value = null
-}
-
-useEventEmitter().listen('eliminar_libro', (event) => {
-  mostrar_componente_eliminar.value.id = event.detail
-  mostrar_componente_eliminar.value.show = true
-})
+import VFiltrosBuscador from './components/VFiltrosBuscador.vue'
+import { useCRUDStore } from './stores/crudStore'
+const crudStore = useCRUDStore()
 </script>
 
 <template>
   <header>
-    <VBarraNavegacion
-      v-on:aniadir_libro="() => (mostrar_componente_aniadir = true)"
-    ></VBarraNavegacion>
+    <VBarraNavegacion />
   </header>
 
   <main class="centrado">
     <div class="main__content centrado">
-      <VEstanteria v-on:enviar_libro="(value) => (libro = value)"></VEstanteria>
-      <VCarta
-        v-on:modificar_libro="() => (mostrar_componente_modificar = true)"
-        v-if="libro"
-        :codigo="libro.getId()"
-        :titulo="libro.getTitulo()"
-        :autor="libro.getAutor()"
-        :anio="libro.getAnnoPublicacion()"
-        :publicador="libro.getPublicador()"
-        :contenido="libro.getContenido()"
-        :cover="libro.getCover()"
-      ></VCarta>
-      <div v-else class="label-selecciona-un-libro">
-        <label>Selecciona un libro</label>
-      </div>
-      <VAniadirLibro
-        v-on:cerrar="() => (mostrar_componente_aniadir = false)"
-        v-if="mostrar_componente_aniadir === true"
-      ></VAniadirLibro>
-      <VEliminarLibro
-        v-on:cancelar="() => (mostrar_componente_eliminar.show = false)"
-        v-on:aceptar="(id) => eliminar_carta(id)"
-        v-if="mostrar_componente_eliminar.show === true"
-        :codigo="mostrar_componente_eliminar.id"
-      ></VEliminarLibro>
-      <VModificarLibro
-        v-on:cerrar="() => (mostrar_componente_modificar = false)"
-        v-if="mostrar_componente_modificar === true"
-        :codigo="libro.getId()"
-        :titulo="libro.getTitulo()"
-        :autor="libro.getAutor()"
-        :anio="libro.getAnnoPublicacion()"
-        :publicador="libro.getPublicador()"
-        :contenido="libro.getContenido()"
-      ></VModificarLibro>
+      <VEstanteria />
+      <VCarta />
+      <Transition name="fade"><VAniadirLibro v-if="crudStore.getAniadir" /></Transition>
+      <Transition name="fade"><VEliminarLibro v-if="crudStore.getEliminar" /></Transition>
+      <Transition name="fade"><VModificarLibro v-if="crudStore.getModificar" :libro="crudStore.getLibroActual" /></Transition>
+      <Transition name="fade"><VFiltrosBuscador v-if="crudStore.getFiltrosBuscador"/></Transition>
     </div>
   </main>
 </template>
 
 <style scoped>
-.label-selecciona-un-libro {
-  width: 60%;
-  font-size: 40px;
-}
 .main__content {
-  flex-direction: column; 
+  flex-direction: column;
 }
 @media (min-width: 768px) {
   .main__content {
@@ -85,7 +37,7 @@ useEventEmitter().listen('eliminar_libro', (event) => {
     gap: 10rem;
   }
 }
-.main__content{
+.main__content {
   margin-top: 10rem;
   gap: 2rem;
 }
