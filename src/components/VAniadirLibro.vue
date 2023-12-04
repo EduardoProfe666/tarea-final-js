@@ -1,8 +1,8 @@
 <template>
   <div class="modal">
-    <form action="" class="componente-cristal modal-contenedor" @submit.prevent="aceptar()">
-      <label class="modal-titulo">Por favor, provéenos los datos del libro a añadir:</label>
-      <div class="modal-inputs">
+    <form action="" class="componente-cristal modal__contenedor" @submit.prevent="aceptar()">
+      <label class="modal__titulo">Por favor, provéenos los datos del libro a añadir:</label>
+      <div class="modal__inputs">
       <label for="titulo">
         <span>Título: </span>
         <input type="text" v-model="titulo"/>
@@ -24,13 +24,14 @@
         <textarea name="t_area" id="area_t" cols="30" rows="10" v-model="contenido"></textarea>
       </label>
     </div>
-      <div class="modal-botones">
+      <div class="modal__botones">
         <button type="submit" class="componente-cristal">
           Aceptar
         </button>
-        <button class="componente-cristal" @click="cancelar()">Cancelar</button>
+        <button type="button" class="componente-cristal" @click="cancelar()">Cancelar</button>
       </div>
     </form>
+    
   </div>
 </template>
 <script setup>

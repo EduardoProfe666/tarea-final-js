@@ -1,7 +1,7 @@
 <template>
   <div class="componente-cristal carta">
     <Transition name="fade"><div class="carta__info" v-if="crudStore.getLibroActual">
-      <img class="carta__cover" :src="`http://localhost:3000/files/cover/:${crudStore.getLibroActual.cover_url}`" />
+      <img class="carta__cover" :src="`http://localhost:3000/files/cover/${crudStore.getLibroActual.cover_url}`" />
       <span class="carta__titulo">{{ crudStore.getLibroActual.titulo }}</span>
       <span class="carta__subtitulo">por {{ crudStore.getLibroActual.autor }}</span>
       <span class="carta__subtitulo"

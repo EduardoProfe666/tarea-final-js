@@ -1,6 +1,6 @@
 <template>
   <div class="libro" @click="mostrarLibroEnCarta()">
-    <img class="caratula" :src="`http://localhost:3000/files/thumbnail/:${props.thumbnail}`" />
+    <img class="caratula" :src="`http://localhost:3000/files/thumbnail/${props.thumbnail}`" />
   </div>
 </template>
 
