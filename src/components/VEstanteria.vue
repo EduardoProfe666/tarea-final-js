@@ -6,7 +6,7 @@
       :codigo="libro.id_libro"
       :titulo="libro.titulo"
       :autor="libro.autor"
-      :thumbnail="libro.cover_url"
+      :thumbnail="libro.thumbnail_url"
     />
   </div>
 </template>

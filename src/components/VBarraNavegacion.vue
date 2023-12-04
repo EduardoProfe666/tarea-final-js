@@ -101,6 +101,10 @@ form input {
   border-radius: 1rem;
   height: 5rem;
 }
+.barra-navegacion__usuario{
+  height: 5rem;
+  margin: auto 0;
+}
 
 @media (min-width: 768px) {
   .input-busqueda {
