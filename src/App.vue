@@ -6,8 +6,9 @@ import VAniadirLibro from './components/VAniadirLibro.vue'
 import VEliminarLibro from './components/VEliminarLibro.vue'
 import VModificarLibro from './components/VModificarLibro.vue'
 import VFiltrosBuscador from './components/VFiltrosBuscador.vue'
-import { useCRUDStore } from './stores/crudStore'
-const crudStore = useCRUDStore()
+import VUsuarioModal from './components/VUsuarioModal.vue'
+import { useGeneralStore } from './stores/generalStore'
+const generalStore = useGeneralStore()
 </script>
 
 <template>
@@ -19,10 +20,13 @@ const crudStore = useCRUDStore()
     <div class="main__content centrado">
       <VEstanteria />
       <VCarta />
-      <Transition name="fade"><VAniadirLibro v-if="crudStore.getAniadir" /></Transition>
-      <Transition name="fade"><VEliminarLibro v-if="crudStore.getEliminar" /></Transition>
-      <Transition name="fade"><VModificarLibro v-if="crudStore.getModificar" :libro="crudStore.getLibroActual" /></Transition>
-      <Transition name="fade"><VFiltrosBuscador v-if="crudStore.getFiltrosBuscador"/></Transition>
+      <Transition name="fade"><VAniadirLibro v-if="generalStore.getAniadir" /></Transition>
+      <Transition name="fade"><VEliminarLibro v-if="generalStore.getEliminar" /></Transition>
+      <Transition name="fade"><VModificarLibro v-if="generalStore.getModificar" :libro="generalStore.getLibroActual" /></Transition>
+      <Transition name="fade"><VUsuarioModal v-if="generalStore.getUsuarioModal" /></Transition>
+      <Transition name="fade_from_up"><VFiltrosBuscador v-if="generalStore.getFiltrosBuscador"/></Transition>
+      
+
     </div>
   </main>
 </template>

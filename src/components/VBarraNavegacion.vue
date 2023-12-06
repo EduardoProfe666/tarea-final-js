@@ -5,48 +5,33 @@
       <h1>Books</h1>
     </div>
     <div class="barra-navegacion__contenedor-buscador">
-      <form class="barra-navegacion__buscador" action="" @submit.prevent="enviarEvento">
-      
-          <input type="text" id="input-busqueda" class="input-busqueda" placeholder="Buscar..." @click="crudStore.setFiltrosBuscador(true)" v-model="textoInput" />
-          <button class="componente-cristal boton-buscar">
-            <img src="/icons/search_icon.png" />
-          </button>
-       
-        
-      </form>
-
-      <button class="componente-cristal boton-refrescar" @click="refrescarBuscadores()">
-        <img src="/icons/refresh_icon.png" />
+      <button @click="generalStore.switchAniadir" class="componente-cristal boton-aniadir">
+        <img src="/icons/add_icon.png" />
       </button>
+      <Transition name="fade_from_down">
+        <button
+          v-if="!generalStore.getFiltrosBuscador"
+          @click="generalStore.setFiltrosBuscador(true)"
+          class="componente-cristal boton-buscar"
+        >
+          <img src="/icons/search_icon.png" />
+        </button>
+      </Transition>
     </div>
-    <img class="barra-navegacion__usuario" src="/icons/user_icon.svg" />
+    <img
+      @click="generalStore.switchUsuarioModal"
+      class="barra-navegacion__usuario"
+      src="/icons/user_icon.svg"
+    />
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
-
-import { useEventEmitter } from '../code/useEventEmitter.js'
-import { useCRUDStore } from '../stores/crudStore'
-const crudStore = useCRUDStore()
-
-const textoInput = ref('')
-
-
-const enviarEvento = () => {
-  useEventEmitter().dispatchEvent('actualizar', {
-    texto: textoInput.value,
-  })
-
-  crudStore.setFiltrosBuscador(false)
-}
-const refrescarBuscadores = () => {
-  textoInput.value = ''
-  enviarEvento()
-}
+import { useGeneralStore } from '../stores/generalStore'
+const generalStore = useGeneralStore()
 </script>
 
-<style scoped>
+<style>
 .barra-navegacion {
   display: flex;
   flex-direction: row;
@@ -61,7 +46,7 @@ const refrescarBuscadores = () => {
 
 .barra-navegacion__titulo {
   flex-direction: column;
-  margin-left: 1rem;
+  margin-left: 1.5rem;
   user-select: none;
 }
 .barra-navegacion__contenedor-buscador {
@@ -75,40 +60,28 @@ const refrescarBuscadores = () => {
 }
 
 .boton-buscar,
-.boton-refrescar {
-  margin-right: 0.2rem;
+.boton-refrescar,
+.boton-aniadir {
   height: 5rem;
   width: 5rem;
-  margin: auto 0;
+  margin: auto 1rem;
 }
-.boton-buscar:active img {
+.boton-buscar:active img,
+.boton-aniadir:active img {
   animation-duration: 250ms;
   animation-name: pop;
 }
-.boton-refrescar:active img {
-  animation-duration: 250ms;
-  animation-name: rotate;
-}
 
-form {
-  display: flex;
-}
-form input {
-  margin-right: 10px;
-}
-.input-busqueda {
-  width: 15rem;
-  border-radius: 1rem;
+.barra-navegacion__usuario {
   height: 5rem;
-}
-.barra-navegacion__usuario{
-  height: 5rem;
-  margin: auto 0;
+  margin: auto 1.5rem;
+  cursor: pointer;
 }
 
 @media (min-width: 768px) {
-  .input-busqueda {
-    width: 40rem;
+  .barra-navegacion__titulo,
+  .barra-navegacion__usuario {
+    margin: auto 3rem;
   }
 }
 </style>

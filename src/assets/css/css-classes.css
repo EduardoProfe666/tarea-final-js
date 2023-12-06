@@ -6,8 +6,8 @@
 }
 /*Componente transparente*/
 .componente-cristal {
-  backdrop-filter: blur(12.1px);
-  -webkit-backdrop-filter: blur(12.1px);
+  backdrop-filter: blur(1.2rem);
+  -webkit-backdrop-filter: blur(1.2rem);
   border-color: white;
   border-radius: 15px;
   border-style: solid;
@@ -17,6 +17,7 @@
   transition: all ease 250ms;
   outline: none;
 }
+/*Botones mini*/
 .boton-mini {
   transition: all ease 250ms;
   size: 3rem;
@@ -37,4 +38,86 @@
 }
 .boton-mini:active {
   scale: 1.4;
+}
+/*Tooltip*/
+
+.tooltip-container{
+  transition: all 0.3s ease-in-out;
+  cursor: default;
+  position: relative;
+  transition: all 0.3s ease-in-out;
+  cursor: default;
+}
+
+.tooltip {
+  visibility: hidden;
+  display: flex;
+  z-index: 1;
+  opacity: 0.4;
+  align-items: center;
+  justify-content: center;
+  width: 12rem;
+  height: 4rem;
+  margin-left: 3rem;
+  margin-top: -1.3rem;
+  background: white;
+  color: black;
+
+  position: absolute;
+
+  border-radius: 1rem;
+
+  transform: translateX(0.9rem);
+  transition: all 0.3s ease-in-out;
+
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.86);
+}
+.tooltip p {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+/*Anotaciones personales: la pseudo-clase "::after" lo que hace es crear un pseudo elemento y asignarlo como ultimo hijo al elemento 
+que le asignamos dicha pseudo-clase. Con el objetivo de darle diseno al atributo "component", generalmente con imagenes*/
+
+.tooltip::after {
+  content: ' ';
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 1.2rem 1.2rem 0 1.2rem;
+  border-color: white transparent transparent transparent;
+  position: absolute;
+}
+
+.tooltip-container:hover .tooltip {
+  visibility: visible;
+  transform: translateX(-1rem);
+  opacity: 1;
+  transition: 0.3s linear;
+  animation: odsoky 1s ease-in-out infinite alternate;
+}
+
+/* Aqui es donde modificas la flecha y la direccion del tooltip*/
+
+.down-tooltip .tooltip {
+  top: 175%;
+  left: 18%;
+}
+
+.down-tooltip .tooltip::after {
+  top: -35%;
+  left: 42%;
+  transform: rotate(180deg);
+}
+
+.right-tooltip .tooltip {
+  top: 35%;
+  left: 100%;
+}
+
+.right-tooltip .tooltip::after {
+  top: 32%;
+  left: -15%;
+  transform: rotate(90deg);
 }

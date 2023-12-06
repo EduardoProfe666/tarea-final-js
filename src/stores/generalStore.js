@@ -1,12 +1,13 @@
 import { defineStore } from 'pinia'
 
-export const useCRUDStore = defineStore('libroActual', {
+export const useGeneralStore = defineStore('general', {
   state:()=>({
     libroActual:null,
     mostrarComponenteAniadir:false,
     mostrarComponenteModificar:false,
     mostrarComponenteEliminar:false,
-    mostrarFiltrosBuscador:false
+    mostrarFiltrosBuscador:false,
+    mostrarUsuarioModal:false
   }),
   getters:{
     getLibroActual(){
@@ -24,6 +25,9 @@ export const useCRUDStore = defineStore('libroActual', {
     getFiltrosBuscador(){
       return this.mostrarFiltrosBuscador
     },
+    getUsuarioModal(){
+      return this.mostrarUsuarioModal
+    },
   },
   actions:{
     setLibroActual(libro){
@@ -38,6 +42,9 @@ export const useCRUDStore = defineStore('libroActual', {
     switchEliminar(){
         this.mostrarComponenteEliminar = !this.mostrarComponenteEliminar
     },
+    switchUsuarioModal(){
+      this.mostrarUsuarioModal = !this.mostrarUsuarioModal
+  },
     setFiltrosBuscador(value){
       this.mostrarFiltrosBuscador = value
   },

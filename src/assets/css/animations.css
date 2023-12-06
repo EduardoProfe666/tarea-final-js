@@ -34,3 +34,31 @@
 .fade-leave-to {
   opacity: 0;
 }
+.fade_from_up-enter-active,
+.fade_from_up-leave-active {
+  transition: all ease 300ms;
+}
+.fade_from_up-enter-from,
+.fade_from_up-leave-to {
+  opacity: 0;
+  transform: translateY(-3rem);
+}
+.fade_from_down-enter-active,
+.fade_from_down-leave-active {
+  transition: all ease 300ms;
+}
+.fade_from_down-enter-from,
+.fade_from_down-leave-to {
+  opacity: 0;
+  transform: translateY(3rem);
+}
+.fade_from_left-enter-active,
+.fade_from_left-leave-active {
+  transition: all ease 300ms;
+}
+.fade_from_left-enter-from,
+.fade_from_left-leave-to {
+  opacity: 0;
+  transform: translateX(-5rem);
+}
+

@@ -37,19 +37,19 @@
 <script setup>
 import { ref } from 'vue';
 import { nuevoLibro } from '../code/controller.js';
-import { useCRUDStore } from '../stores/crudStore'
-const crudStore = useCRUDStore()
+import { useGeneralStore } from '../stores/generalStore'
+const generalStore = useGeneralStore()
 const titulo = ref('')
 const autor = ref('')
 const anio = ref(0)
 const publicador = ref('')
 const contenido = ref('')
 
-const cancelar = () => crudStore.switchAniadir()
+const cancelar = () => generalStore.switchAniadir()
 const aceptar = async () => {
   try{
     await nuevoLibro(titulo.value, autor.value, anio.value, publicador.value, contenido.value);
-    crudStore.switchAniadir()
+    generalStore.switchAniadir()
   }catch(e){
     alert(e.message)
   }

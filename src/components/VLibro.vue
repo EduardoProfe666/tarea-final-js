@@ -1,22 +1,22 @@
 <template>
   <div class="libro" @click="mostrarLibroEnCarta()">
-    <img class="caratula" :src="`http://localhost:3000/files/thumbnail/${props.thumbnail}`" />
+    <img class="caratula" :src="`http://localhost:3000/files/thumbnail/${props.thumbnail}`"  />
   </div>
 </template>
 
 <script setup>
 import { buscarLibroporID } from '../code/controller'
-import { useCRUDStore } from '../stores/crudStore'
+import { useGeneralStore } from '../stores/generalStore'
 const props = defineProps({
   codigo: Number,
   thumbnail: String
 })
 
-const crudStore = useCRUDStore()
+const generalStore = useGeneralStore()
 
 const mostrarLibroEnCarta = async () => {
-  crudStore.setLibroActual(null)
-  buscarLibroporID(props.codigo).then((response) => crudStore.setLibroActual(response))
+  generalStore.setLibroActual(null)
+  buscarLibroporID(props.codigo).then((response) => generalStore.setLibroActual(response))
 }
 </script>
 <style scoped>

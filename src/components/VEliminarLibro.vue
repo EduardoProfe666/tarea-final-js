@@ -12,13 +12,13 @@
 
 <script setup>
 import { eliminarLibro } from '../code/controller'
-import { useCRUDStore } from '../stores/crudStore'
-const crudStore = useCRUDStore()
+import { useGeneralStore } from '../stores/generalStore'
+const generalStore = useGeneralStore()
 
-const cancelar = () => crudStore.switchEliminar()
+const cancelar = () => generalStore.switchEliminar()
 const aceptar = () => {
-  eliminarLibro(crudStore.getLibroActual.getId())
-  crudStore.setLibroActual(null)
-  crudStore.switchEliminar()
+  eliminarLibro(generalStore.getLibroActual.getId())
+  generalStore.setLibroActual(null)
+  generalStore.switchEliminar()
 }
 </script>

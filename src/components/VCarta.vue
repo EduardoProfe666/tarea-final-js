@@ -1,46 +1,56 @@
 <template>
   <div class="componente-cristal carta">
-    <Transition name="fade"><div class="carta__info" v-if="crudStore.getLibroActual">
-      <img class="carta__cover" :src="`http://localhost:3000/files/cover/${crudStore.getLibroActual.cover_url}`" />
-      <span class="carta__titulo">{{ crudStore.getLibroActual.titulo }}</span>
-      <span class="carta__subtitulo">por {{ crudStore.getLibroActual.autor }}</span>
-      <span class="carta__subtitulo"
-        >publicado por {{ crudStore.getLibroActual.publicador }} en
-        {{ crudStore.getLibroActual.anno_publicacion }}</span
-      >
-      <p class="carta__contenido">{{ crudStore.getLibroActual.sinopsis }}</p>
-    </div>
+    <Transition name="fade_from_left"
+      ><div class="carta__info" v-if="generalStore.getLibroActual">
+        <img
+          class="carta__cover"
+          :src="`http://localhost:3000/files/cover/${generalStore.getLibroActual.cover_url}`"
+          crossorigin="anonymous"
+        />
+        <span class="carta__titulo">{{ generalStore.getLibroActual.titulo }}</span>
+        <span class="carta__subtitulo">por {{ generalStore.getLibroActual.autor }}</span>
+        <span class="carta__subtitulo"
+          >publicado por {{ generalStore.getLibroActual.publicador }} en
+          {{ generalStore.getLibroActual.anno_publicacion }}</span
+        >
+        <p class="carta__contenido">{{ generalStore.getLibroActual.sinopsis }}</p>
+      </div>
       <span v-else class="placeholder-span">Selecciona un libro</span>
     </Transition>
-    <div class="carta__botones">
-      <img class="boton-aniadir boton-mini" src="/icons/add_icon.png" @click="aniadirLibro()" />
-      <Transition name="fade"><img
-        v-if="crudStore.getLibroActual"
-        class="boton-modificar boton-mini"
-        src="/icons/edit_icon.png"
-        @click="modificarLibro()"
-      /></Transition>
-      <Transition name="fade"><img
-        v-if="crudStore.getLibroActual"
-        @click="eliminarLibro()"
-        class="boton-borrar boton-mini"
-        src="/icons/delete_icon.png"
-      /></Transition>
+
+    <div v-if="generalStore.getLibroActual" class="carta__botones">
+      <div class="right-tooltip tooltip-container">
+        <img
+          class="boton-modificar boton-mini"
+          src="/icons/edit_icon.png"
+          @click="modificarLibro()"
+        />
+        <div class="tooltip">
+          <p>Editar Libro</p>
+        </div>
+      </div>
+      <div class="right-tooltip tooltip-container">
+        <img
+          @click="eliminarLibro()"
+          class="boton-borrar boton-mini"
+          src="/icons/delete_icon.png"
+        />
+        <div class="tooltip">
+          <p>Eliminar Libro</p>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 <script setup>
-import { useCRUDStore } from '../stores/crudStore'
-const crudStore = useCRUDStore()
+import { useGeneralStore } from '../stores/generalStore'
+const generalStore = useGeneralStore()
 
-const aniadirLibro = () => {
-  crudStore.switchAniadir()
-}
 const modificarLibro = () => {
-  crudStore.switchModificar()
+  generalStore.switchModificar()
 }
 const eliminarLibro = () => {
-  crudStore.switchEliminar()
+  generalStore.switchEliminar()
 }
 </script>
 
@@ -48,7 +58,7 @@ const eliminarLibro = () => {
 .carta {
   box-shadow: 0 0 0.8rem white;
   flex-direction: column;
-  
+
   width: 30rem;
   height: 65vh;
 }
@@ -95,7 +105,7 @@ const eliminarLibro = () => {
   transition: all ease 250ms;
   gap: 1.5rem;
 }
-.placeholder-span{
+.placeholder-span {
   font-size: 3rem;
   margin: auto;
 }

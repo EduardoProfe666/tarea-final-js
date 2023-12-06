@@ -34,10 +34,10 @@
 <script setup>
 import { ref } from 'vue'
 import { editarLibro } from '../code/controller'
-import { useCRUDStore } from '../stores/crudStore'
+import { useGeneralStore } from '../stores/generalStore'
 import { Libro } from '../code/libro'
 
-const crudStore = useCRUDStore()
+const generalStore = useGeneralStore()
 const props = defineProps({
   libro: Libro
 })
@@ -47,7 +47,7 @@ const anio = ref(props.libro.anno_publicacion)
 const publicador = ref(props.libro.publicador)
 const contenido = ref(props.libro.sinopsis)
 
-const cancelar = () => crudStore.switchModificar()
+const cancelar = () => generalStore.switchModificar()
 const aceptar = async () => {
   try {
     await editarLibro(
@@ -59,9 +59,9 @@ const aceptar = async () => {
       contenido.value
     )
     const libro = props.libro
-    crudStore.setLibroActual(null)
-    crudStore.setLibroActual(libro)
-    crudStore.switchModificar()
+    generalStore.setLibroActual(null)
+    generalStore.setLibroActual(libro)
+    generalStore.switchModificar()
   } catch (e) {
     alert(e.message)
   }
