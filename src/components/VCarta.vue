@@ -39,6 +39,16 @@
           <p>Eliminar Libro</p>
         </div>
       </div>
+      <div class="right-tooltip tooltip-container">
+        <img
+          class="boton-modificar boton-mini"
+          src="/icons/read_icon.png"
+          @click="leerLibro()"
+        />
+        <div class="tooltip">
+          <p>Leer Libro</p>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -51,6 +61,9 @@ const modificarLibro = () => {
 }
 const eliminarLibro = () => {
   generalStore.switchEliminar()
+}
+const leerLibro=()=>{
+  generalStore.switchLeer()
 }
 </script>
 
@@ -72,6 +85,7 @@ const eliminarLibro = () => {
   align-items: center;
   text-align: center;
   overflow: auto;
+  width: 95%;
 }
 
 .carta__cover {
@@ -108,6 +122,11 @@ const eliminarLibro = () => {
 .placeholder-span {
   font-size: 3rem;
   margin: auto;
+}
+.boton-leer {
+  height: 5rem;
+  width: 5rem;
+  margin: auto 1rem;
 }
 @media (min-width: 768px) {
   .carta {

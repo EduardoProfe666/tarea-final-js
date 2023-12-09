@@ -17,7 +17,7 @@ const generalStore = useGeneralStore()
 
 const cancelar = () => generalStore.switchEliminar()
 const aceptar = () => {
-  eliminarLibro(generalStore.getLibroActual.getId())
+  eliminarLibro(generalStore.getLibroActual.id_libro)
   generalStore.setLibroActual(null)
   generalStore.switchEliminar()
 }

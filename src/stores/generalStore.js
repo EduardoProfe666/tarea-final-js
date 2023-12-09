@@ -7,7 +7,8 @@ export const useGeneralStore = defineStore('general', {
     mostrarComponenteModificar:false,
     mostrarComponenteEliminar:false,
     mostrarFiltrosBuscador:false,
-    mostrarUsuarioModal:false
+    mostrarUsuarioModal:false,
+    mostrarComponenteLeer:false
   }),
   getters:{
     getLibroActual(){
@@ -28,6 +29,9 @@ export const useGeneralStore = defineStore('general', {
     getUsuarioModal(){
       return this.mostrarUsuarioModal
     },
+    getLeer(){
+      return this.mostrarComponenteLeer
+    }
   },
   actions:{
     setLibroActual(libro){
@@ -44,6 +48,9 @@ export const useGeneralStore = defineStore('general', {
     },
     switchUsuarioModal(){
       this.mostrarUsuarioModal = !this.mostrarUsuarioModal
+  },
+  switchLeer(){
+    this.mostrarComponenteLeer = !this.mostrarComponenteLeer
   },
     setFiltrosBuscador(value){
       this.mostrarFiltrosBuscador = value
