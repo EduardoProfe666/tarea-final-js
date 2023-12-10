@@ -7,7 +7,7 @@ import VEliminarLibro from './components/VEliminarLibro.vue'
 import VModificarLibro from './components/VModificarLibro.vue'
 import VFiltrosBuscador from './components/VFiltrosBuscador.vue'
 import VUsuarioModal from './components/VUsuarioModal.vue'
-//import WebViewer from './components/WebViewer.vue'
+import VPDF from './components/VPDF.vue'
 import { useGeneralStore } from './stores/generalStore'
 const generalStore = useGeneralStore()
 </script>
@@ -26,9 +26,7 @@ const generalStore = useGeneralStore()
       <Transition name="fade"><VModificarLibro v-if="generalStore.getModificar" :libro="generalStore.getLibroActual" /></Transition>
       <Transition name="fade"><VUsuarioModal v-if="generalStore.getUsuarioModal" /></Transition>
       <Transition name="fade_from_up"><VFiltrosBuscador v-if="generalStore.getFiltrosBuscador"/></Transition>
-      <!--<Transition name="fade"><WebViewer v-if="generalStore.getLeer" /></Transition>-->
-      
-
+      <Transition name="fade"><VPDF v-if="generalStore.getLeer" /></Transition>
     </div>
   </main>
 </template>

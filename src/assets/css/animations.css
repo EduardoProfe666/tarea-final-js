@@ -45,7 +45,7 @@
 }
 .fade_from_down-enter-active,
 .fade_from_down-leave-active {
-  transition: all ease 300ms;
+  transition: all ease 200ms;
 }
 .fade_from_down-enter-from,
 .fade_from_down-leave-to {
@@ -54,7 +54,7 @@
 }
 .fade_from_left-enter-active,
 .fade_from_left-leave-active {
-  transition: all ease 300ms;
+  transition: all ease 200ms;
 }
 .fade_from_left-enter-from,
 .fade_from_left-leave-to {

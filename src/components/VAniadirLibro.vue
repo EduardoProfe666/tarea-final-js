@@ -5,33 +5,33 @@
       <div class="modal__inputs">
       <label for="titulo">
         <span>Título: </span>
-        <input type="text" v-model="titulo"/>
+        <input type="text" v-model="titulo" required/>
       </label>
       <label for="autor">
         <span>Autor: </span>
-        <input type="text" id="autor" v-model="autor"/>
+        <input type="text" id="autor" v-model="autor" required/>
       </label>
       <label for="anio-publicacion">
         <span>Año Publicación: </span>
-        <input type="number" id="anio-publicacion" v-model="anio"/>
+        <input type="number" id="anio-publicacion" v-model="anio" required/>
       </label>
       <label for="publicador">
         <span>Publicador: </span>
-        <input type="text" id="publicador" v-model="publicador"/>
+        <input type="text" id="publicador" v-model="publicador" required/>
       </label>
      
       
       <label for="contenido">
         <span>Contenido: </span>
-        <textarea name="t_area" id="area_t" cols="30" rows="10" v-model="contenido"></textarea>
+        <textarea name="t_area" id="area_t" cols="30" rows="10" v-model="contenido" required></textarea>
       </label>
       <label for="url-cover">
         <span>Cover: </span>
-        <input type="file" id="url-cover" accept="image/png,image/jpeg" @change="manejarCoverInsertado()" ref="inputCover">
+        <input type="file" id="url-cover" accept="image/png,image/jpeg" @change="manejarCoverInsertado()" ref="inputCover" required>
       </label>
       <label for="url-pdf">
         <span>Contenido: </span>
-        <input type="file" id="url-pdf" accept=".pdf" @change="manejarPDFInsertado()" ref="inputPDF">
+        <input type="file" id="url-pdf" accept=".pdf" @change="manejarPDFInsertado()" ref="inputPDF" required>
       </label>
     </div>
       <div class="modal__botones">

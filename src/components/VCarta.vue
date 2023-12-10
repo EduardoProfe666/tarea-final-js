@@ -40,11 +40,7 @@
         </div>
       </div>
       <div class="right-tooltip tooltip-container">
-        <img
-          class="boton-modificar boton-mini"
-          src="/icons/read_icon.png"
-          @click="leerLibro()"
-        />
+        <img class="boton-modificar boton-mini" src="/icons/read_icon.png" @click="leerLibro()" />
         <div class="tooltip">
           <p>Leer Libro</p>
         </div>
@@ -62,7 +58,7 @@ const modificarLibro = () => {
 const eliminarLibro = () => {
   generalStore.switchEliminar()
 }
-const leerLibro=()=>{
+const leerLibro = () => {
   generalStore.switchLeer()
 }
 </script>
@@ -73,7 +69,7 @@ const leerLibro=()=>{
   flex-direction: column;
 
   width: 30rem;
-  height: 65vh;
+  height: 50vh;
 }
 
 .carta__info > * {
@@ -92,10 +88,11 @@ const leerLibro=()=>{
   border-color: white;
   border-radius: 1.5rem;
   border-style: solid;
-  width: 20rem;
+  height: 20rem;
   pointer-events: none;
   user-select: none;
   margin: 2rem;
+  max-width: 20rem;
   box-shadow: 0 0 0.8rem white;
 }
 .carta__titulo {
@@ -120,7 +117,7 @@ const leerLibro=()=>{
   gap: 1.5rem;
 }
 .placeholder-span {
-  font-size: 3rem;
+  font-size: 1.6rem;
   margin: auto;
 }
 .boton-leer {
@@ -128,25 +125,35 @@ const leerLibro=()=>{
   width: 5rem;
   margin: auto 1rem;
 }
+
+@media (min-width: 480px) {
+  .carta {
+    width: 45rem;
+  }
+  .carta__cover {
+    max-width: 35rem;
+  }
+}
 @media (min-width: 768px) {
   .carta {
     order: 1;
     height: 80vh;
   }
-}
-@media (min-width: 480px) {
-  .carta {
-    width: 45rem;
-  }
-}
-@media (min-width: 768px) {
-  .carta {
-    height: 80vh;
+  .carta__cover {
+    height: 30rem;
+    max-width: 35rem;
   }
 }
 @media (min-width: 1024px) {
   .carta {
-    width: 65rem;
+    width: 70rem;
+  }
+  .carta__cover {
+    max-width: 60rem;
+  }
+
+  .placeholder-span {
+    font-size: 3rem;
   }
 }
 </style>

@@ -41,6 +41,7 @@ const generalStore = useGeneralStore()
   background-color: rgba(0, 0, 0, 0.3);
   height: 8rem;
   width: 100%;
+  z-index: 2000;
   justify-content: space-between;
 }
 
