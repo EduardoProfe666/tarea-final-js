@@ -2,7 +2,7 @@
   <div class="modal">
     <div class="modal__contenedor componente-cristal">
       <label class="modal__titulo">{{ generalStore.getLibroActual.titulo }}</label>
-      <vue-pdf-embed class="pdf" source="/Conceptos.pdf" :annotation-layer="false" />
+      <vue-pdf-embed class="pdf" :source="`http://localhost:3000/files/content/${generalStore.getLibroActual.contenido_url}`" :annotation-layer="false" />
       <div class="modal__botones">
         <button class="componente-cristal" @click="cerrar()">Cerrar</button>
       </div>

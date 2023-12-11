@@ -1,5 +1,4 @@
 import biblioteca from './biblioteca'
-import { Libro } from './libro'
 import { useEventEmitter } from './useEventEmitter'
 
 export const eliminarLibro = async (id) => {
@@ -19,6 +18,7 @@ export const nuevoLibro = async (titulo, autor, anio, publicador, contenido, cov
   formData.append("editorial",publicador)
   formData.append("cover",cover)
   formData.append("synopsis",contenido)
+  formData.append("content",pdf)
   await fetch(`http://localhost:3000/books`, {
     method: 'POST',
     mode: 'cors',
