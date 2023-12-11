@@ -11,7 +11,7 @@ export const eliminarLibro = async (id) => {
 }
 
 export const nuevoLibro = async (titulo, autor, anio, publicador, contenido, cover, pdf) => {
-  biblioteca.validar(titulo, autor, anio, publicador, contenido)
+  biblioteca.validar(titulo, autor, anio, publicador, contenido, cover, pdf)
   const formData = new FormData()
   formData.append("title",titulo)
   formData.append("author",autor)
