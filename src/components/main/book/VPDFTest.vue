@@ -1,46 +1,50 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import { VuePDF, usePDF } from '@tato30/vue-pdf'
 import { useGeneralStore } from '../../../stores/generalStore'
-
 
 const generalStore = useGeneralStore()
 
 const page = ref(1)
-const { pdf, pages } = usePDF(`http://localhost:3000/files/content/${generalStore.getLibroActual.contenido_url}`)
-
+const { pdf, pages } = usePDF(
+  `http://localhost:3000/files/content/${generalStore.getLibroActual.contenido_url}`
+)
 
 const cerrar = () => {
   generalStore.switchLeer()
 }
+watch(page, () => {
+  if (page.value !== '') {
+    if (!isNaN(page.value)) {
+      if (page.value <= 0) page.value = 1
+      else if (page.value > pages._value) page.value = pages._value
+    } else {
+      console.log(page.value)
+      page.value = 1
+    }
+  }else page.value=1
+})
 </script>
 <style>
 .pdf {
-  height: 70vh;
-  width: 80%;
-  overflow: auto;
   border-radius: 1.5rem;
 }
-.pdf__page{
- overflow: auto;
-}
-
 </style>
-
 
 <template>
   <div class="modal">
     <div class="modal__contenedor componente-cristal">
       <label class="modal__titulo">{{ generalStore.getLibroActual.titulo }}</label>
 
-      <div class="pdf">
+      <div>
         <div>
+          <VuePDF class="pdf" :pdf="pdf" :page="page" fit-parent />
           <div>
             <button @click="page = page > 1 ? page - 1 : page">Prev</button>
-            <span>{{ page }} / {{ pages }}</span>
+            <input type="number" v-model="page" />
+            <span> / {{ pages }}</span>
             <button @click="page = page < pages ? page + 1 : page">Next</button>
           </div>
-          <VuePDF :pdf="pdf" :page="page" />
         </div>
       </div>
       <div class="modal__botones">

@@ -4,6 +4,7 @@
       <label class="modal__titulo">{{ generalStore.getLibroActual.titulo }}</label>
 
       <div class="pdf">
+        
         <div v-for="page in pages" :key="page">
           <VuePDF class="pdf__page" :pdf="pdf" :page="page" :scale="0.7"/>
         </div>
