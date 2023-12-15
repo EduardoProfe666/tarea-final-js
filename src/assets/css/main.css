@@ -1,3 +1,16 @@
+@import url(./css-classes.css);
+@import url(./animations.css);
+@import url(./modal.css);
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+}
+
 html {
   background-image: linear-gradient(to right, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
     url('/backgrounds/wood.png');
@@ -5,12 +18,13 @@ html {
   background-attachment: fixed;
   background-size: cover;
   color: white;
+  font-size: 62.5%;
+  width: 100vw;
+  overflow-x: hidden;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 body,
 html {
-  padding: 0;
-  margin: 0;
   height: 95vh;
 }
 
@@ -18,13 +32,6 @@ html {
   animation-duration: 1s;
   animation-name: fade-in;
   height: 95vh;
-}
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  font-weight: normal;
 }
 button {
   cursor: pointer;
@@ -79,44 +86,5 @@ textarea:focus {
   background-color: #fbfbfb;
 }
 
-/*Componente transparente*/
-.componente-cristal {
-  backdrop-filter: blur(12.1px);
-  -webkit-backdrop-filter: blur(12.1px);
-  border-color: white;
-  border-radius: 15px;
-  border-style: solid;
-  text-align: center;
-  align-items: center;
-  display: flex;
-  transition: all ease 250ms;
-  outline: none;
-}
-/*Animaciones*/
-@keyframes fade-in {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-@keyframes rotate {
-  0% {
-    rotate: 0;
-  }
-  100% {
-    rotate: 360deg;
-  }
-}
-@keyframes pop {
-  0% {
-    transform: scaleX(1);
-  }
-  50% {
-    transform: scaleX(0);
-  }
-  100% {
-    transform: scaleX(1);
-  }
-}
+
+
