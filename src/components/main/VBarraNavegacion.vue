@@ -27,7 +27,7 @@
 </template>
 
 <script setup>
-import { useGeneralStore } from '../stores/generalStore'
+import { useGeneralStore } from '../../stores/generalStore'
 const generalStore = useGeneralStore()
 </script>
 

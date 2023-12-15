@@ -46,8 +46,8 @@
 </template>
 <script setup>
 import { ref } from 'vue';
-import { nuevoLibro } from '../code/controller.js';
-import { useGeneralStore } from '../stores/generalStore'
+import { nuevoLibro } from '../../../code/controller';
+import { useGeneralStore } from '../../../stores/generalStore';
 const generalStore = useGeneralStore()
 const titulo = ref('')
 const autor = ref('')

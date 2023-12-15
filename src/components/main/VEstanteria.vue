@@ -13,9 +13,9 @@
 
 <script setup>
 import VLibro from './VLibro.vue'
-import { solicitarLibros } from '../code/controller'
-import { useEventEmitter } from '../code/useEventEmitter'
-import { useLibrosStore } from '../stores/librosStore'
+import { solicitarLibros } from '../../code/controller'
+import { useEventEmitter } from '../../code/useEventEmitter'
+import { useLibrosStore } from '../../stores/librosStore'
 
 const librosStore = useLibrosStore()
 

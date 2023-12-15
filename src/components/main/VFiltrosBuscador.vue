@@ -37,8 +37,8 @@
 
 <script setup>
 import { ref } from 'vue'
-import { useEventEmitter } from '../code/useEventEmitter.js'
-import { useGeneralStore } from '../stores/generalStore'
+import { useEventEmitter } from '../../code/useEventEmitter.js'
+import { useGeneralStore } from '../../stores/generalStore'
 const generalStore = useGeneralStore()
 
 const titulo = ref('')

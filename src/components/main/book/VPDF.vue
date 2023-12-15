@@ -11,7 +11,7 @@
 </template>
 
 <script setup>
-import { useGeneralStore } from '../stores/generalStore'
+import { useGeneralStore } from '../../../stores/generalStore'
 import VuePdfEmbed from 'vue-pdf-embed'
 
 const generalStore = useGeneralStore()

@@ -49,7 +49,7 @@
   </div>
 </template>
 <script setup>
-import { useGeneralStore } from '../stores/generalStore'
+import { useGeneralStore } from '../../stores/generalStore'
 const generalStore = useGeneralStore()
 
 const modificarLibro = () => {
@@ -119,6 +119,7 @@ const leerLibro = () => {
 .placeholder-span {
   font-size: 1.6rem;
   margin: auto;
+  user-select: none;
 }
 .boton-leer {
   height: 5rem;

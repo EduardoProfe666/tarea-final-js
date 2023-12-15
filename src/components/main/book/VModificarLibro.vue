@@ -33,9 +33,9 @@
 </template>
 <script setup>
 import { ref } from 'vue'
-import { editarLibro } from '../code/controller'
-import { useGeneralStore } from '../stores/generalStore'
-import { Libro } from '../code/libro'
+import { editarLibro } from '../../../code/controller'
+import { useGeneralStore } from '../../../stores/generalStore'
+import { Libro } from '../../../code/libro'
 
 const generalStore = useGeneralStore()
 const props = defineProps({

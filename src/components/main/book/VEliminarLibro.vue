@@ -11,8 +11,8 @@
 </template>
 
 <script setup>
-import { eliminarLibro } from '../code/controller'
-import { useGeneralStore } from '../stores/generalStore'
+import { eliminarLibro } from '../../../code/controller'
+import { useGeneralStore } from '../../../stores/generalStore'
 const generalStore = useGeneralStore()
 
 const cancelar = () => generalStore.switchEliminar()

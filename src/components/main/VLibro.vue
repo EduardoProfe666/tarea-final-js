@@ -5,8 +5,8 @@
 </template>
 
 <script setup>
-import { buscarLibroporID } from '../code/controller'
-import { useGeneralStore } from '../stores/generalStore'
+import { buscarLibroporID } from '../../code/controller'
+import { useGeneralStore } from '../../stores/generalStore'
 const props = defineProps({
   codigo: Number,
   thumbnail: String
