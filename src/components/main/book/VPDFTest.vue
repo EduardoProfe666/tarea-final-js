@@ -6,6 +6,7 @@ import { useGeneralStore } from '../../../stores/generalStore'
 const generalStore = useGeneralStore()
 
 const page = ref(1)
+const page_input = ref(1)
 const { pdf, pages } = usePDF(
   `http://localhost:3000/files/content/${generalStore.getLibroActual.contenido_url}`
 )
@@ -13,23 +14,19 @@ const { pdf, pages } = usePDF(
 const cerrar = () => {
   generalStore.switchLeer()
 }
+const pageInputIsValid = () => {
+  return page_input.value >= 1 && page_input.value <= pages.value
+}
+const setPageInputCorrectly = () => {
+  if (!pageInputIsValid()) page_input.value = page.value
+}
+watch(page_input, () => {
+  if (pageInputIsValid()) page.value = page_input.value
+})
 watch(page, () => {
-  if (page.value !== '') {
-    if (!isNaN(page.value)) {
-      if (page.value <= 0) page.value = 1
-      else if (page.value > pages._value) page.value = pages._value
-    } else {
-      console.log(page.value)
-      page.value = 1
-    }
-  }else page.value=1
+  page_input.value = page.value
 })
 </script>
-<style>
-.pdf {
-  border-radius: 1.5rem;
-}
-</style>
 
 <template>
   <div class="modal">
@@ -37,11 +34,16 @@ watch(page, () => {
       <label class="modal__titulo">{{ generalStore.getLibroActual.titulo }}</label>
 
       <div>
-        <div>
+        <div class="container-pdf">
           <VuePDF class="pdf" :pdf="pdf" :page="page" fit-parent />
           <div>
             <button @click="page = page > 1 ? page - 1 : page">Prev</button>
-            <input type="number" v-model="page" />
+            <input
+              type="number"
+              v-on:blur="setPageInputCorrectly"
+              v-on:keypress.enter="setPageInputCorrectly"
+              v-model="page_input"
+            />
             <span> / {{ pages }}</span>
             <button @click="page = page < pages ? page + 1 : page">Next</button>
           </div>
@@ -53,3 +55,10 @@ watch(page, () => {
     </div>
   </div>
 </template>
+
+<style>
+.pdf {
+  border-radius: 1.5rem;
+  max-height: 70vh;
+}
+</style>

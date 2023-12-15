@@ -42,7 +42,7 @@
 }
 /*Tooltip*/
 
-.tooltip-container{
+.tooltip-container {
   transition: all 0.3s ease-in-out;
   cursor: default;
   position: relative;
@@ -121,4 +121,8 @@ que le asignamos dicha pseudo-clase. Con el objetivo de darle diseno al atributo
   top: 32%;
   left: -15%;
   transform: rotate(90deg);
+}
+
+.container-pdf {
+  max-height: 75vh;
 }
