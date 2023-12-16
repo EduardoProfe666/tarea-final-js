@@ -1,5 +1,6 @@
 <template>
-  <div class="modal">
+    <div class="modal" v-if="mostrarModal" @keydown="cerrarModal($event)"> 
+  
     <form action="" class="componente-cristal modal__contenedor" @submit.prevent="aceptar()">
       <label class="modal__titulo">Por favor, provéenos los datos del libro a añadir:</label>
       <div class="modal__inputs">
@@ -45,7 +46,7 @@
   </div>
 </template>
 <script setup>
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import { nuevoLibro } from '../../../code/controller';
 import { useGeneralStore } from '../../../stores/generalStore';
 const generalStore = useGeneralStore()
@@ -78,6 +79,29 @@ const aceptar = async () => {
   }
 }
 
+
+const mostrarModal = ref(true);
+
+
+// Escucha los cambios en la variable `mostrarModal`
+watch(mostrarModal, (nuevoValor) => {
+ if (nuevoValor) {
+   // Cuando se muestra el modal, se agrega un evento para escuchar la tecla "Escape"
+   document.addEventListener('keydown', cerrarModal);
+ } else {
+   // Cuando se cierra el modal, se elimina el evento para dejar de escuchar la tecla "Escape"
+   document.removeEventListener('keydown', cerrarModal);
+ }
+});
+
+
+const cerrarModal = (event) => {
+  
+ if (event.key === 'Escape') {
+  
+   mostrarModal.value = false;
+ }
+}
 </script>
 
 
