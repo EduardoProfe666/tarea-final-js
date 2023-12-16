@@ -6,7 +6,7 @@ import VEliminarLibro from './book/VEliminarLibro.vue'
 import VModificarLibro from './book/VModificarLibro.vue'
 import VFiltrosBuscador from './VFiltrosBuscador.vue'
 import VUsuarioModal from './VUsuarioModal.vue'
-import VPDFTest from './book/VPDFTest.vue'
+import VPDF from './book/VPDF.vue'
 import { useGeneralStore } from '../../stores/generalStore'
 const generalStore = useGeneralStore()
 </script>
@@ -24,7 +24,7 @@ const generalStore = useGeneralStore()
     <Transition name="fade_from_up"
       ><VFiltrosBuscador v-if="generalStore.getFiltrosBuscador"
     /></Transition>
-    <Transition name="fade"><VPDFTest v-if="generalStore.getLeer" /></Transition>
+    <Transition name="fade"><VPDF v-if="generalStore.getLeer" /></Transition>
   </div>
 </template>
 
