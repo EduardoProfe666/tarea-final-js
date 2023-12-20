@@ -2,6 +2,8 @@
 import VBarraNavegacion from './components/main/VBarraNavegacion.vue';
 import VPrincipal from './components/main/VPrincipal.vue'
 import {useRouter,useRoute} from 'vue-router'
+
+
 </script>
 
 <template>
@@ -11,6 +13,9 @@ import {useRouter,useRoute} from 'vue-router'
 
   <main class="centrado">
     <VPrincipal/>
+  
   </main>
+
+  
 </template>
 

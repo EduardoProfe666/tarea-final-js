@@ -36,7 +36,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useEventEmitter } from '../../code/useEventEmitter.js'
 import { useGeneralStore } from '../../stores/generalStore'
 const generalStore = useGeneralStore()
@@ -62,6 +62,14 @@ const refrescarBuscadores = () => {
   publicador.value = ''
   enviarEvento()
 }
+const cerrarModal = (event) => {
+  if (event.key === 'Escape') {
+    generalStore.setFiltrosBuscador(false);
+    document.removeEventListener('keydown', cerrarModal);
+  }}
+  onMounted(()=>{
+    document.addEventListener('keydown', cerrarModal);
+  })
 </script>
 <style>
 .barra-navegacion__buscador__filtros {

@@ -1,5 +1,5 @@
 <script setup>
-import { ref, watch } from 'vue'
+import { ref, watch, onMounted } from 'vue'
 import { VuePDF, usePDF } from '@tato30/vue-pdf'
 import { useGeneralStore } from '../../../stores/generalStore'
 
@@ -24,6 +24,15 @@ watch(page, () => {
     }
   }else page.value=1
 })
+
+const cerrarModal = (event) => {
+  if (event.key === 'Escape') {
+    generalStore.switchLeer();
+    document.removeEventListener('keydown', cerrarModal);
+  }}
+  onMounted(()=>{
+    document.addEventListener('keydown', cerrarModal);
+  })
 </script>
 <style>
 .pdf {
