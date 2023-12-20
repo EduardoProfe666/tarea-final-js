@@ -1,5 +1,6 @@
 <template>
-  <div class="modal">
+    <div class="modal" > 
+  
     <form action="" class="componente-cristal modal__contenedor" @submit.prevent="aceptar()">
       <label class="modal__titulo">Por favor, provéenos los datos del libro a añadir:</label>
       <div class="modal__inputs">
@@ -45,7 +46,7 @@
   </div>
 </template>
 <script setup>
-import { ref } from 'vue';
+import { ref,onMounted } from 'vue';
 import { nuevoLibro } from '../../../code/controller';
 import { useGeneralStore } from '../../../stores/generalStore';
 const generalStore = useGeneralStore()
@@ -68,7 +69,10 @@ const manejarPDFInsertado = () => {
   const archivo = inputPDF.value.files[0]
   pdf.value = archivo;
 };
-const cancelar = () => generalStore.switchAniadir()
+const cancelar = () => {
+  generalStore.switchAniadir()
+  document.removeEventListener('keydown', cerrarModal);
+}
 const aceptar = async () => {
   try{
     await nuevoLibro(titulo.value, autor.value, anio.value, publicador.value, contenido.value,cover.value, pdf.value);
@@ -77,6 +81,18 @@ const aceptar = async () => {
     alert(e.message)
   }
 }
+
+const cerrarModal = (event) => {
+  if (event.key === 'Escape') {
+    generalStore.switchAniadir()
+    document.removeEventListener('keydown', cerrarModal);
+  }}
+  onMounted(()=>{
+    document.addEventListener('keydown', cerrarModal);
+  })
+
+
+
 
 </script>
 

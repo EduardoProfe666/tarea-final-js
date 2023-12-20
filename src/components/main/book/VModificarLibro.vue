@@ -32,7 +32,7 @@
   </div>
 </template>
 <script setup>
-import { ref } from 'vue'
+import { ref , onMounted} from 'vue'
 import { editarLibro } from '../../../code/controller'
 import { useGeneralStore } from '../../../stores/generalStore'
 import { Libro } from '../../../code/libro'
@@ -66,4 +66,13 @@ const aceptar = async () => {
     alert(e.message)
   }
 }
+
+const cerrarModal = (event) => {
+  if (event.key === 'Escape') {
+    generalStore.switchModificar()
+    document.removeEventListener('keydown', cerrarModal);
+  }}
+  onMounted(()=>{
+    document.addEventListener('keydown', cerrarModal);
+  })
 </script>
