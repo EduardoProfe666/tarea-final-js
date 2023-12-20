@@ -1,0 +1,87 @@
+/*Componentes modal para modificar y añadir libros*/
+.modal {
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(1.2rem);
+  -webkit-backdrop-filter: blur(1.2rem);
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3000;
+  height: 100vh;
+}
+.modal__contenedor {
+  background: rgba(255, 200, 161, 0.29);
+  width: 30rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  
+}
+.modal__inputs {
+  height: 80%;
+  width: 80%;
+  overflow: auto;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: 40vh;
+}
+.modal__botones {
+  display: flex;
+  justify-content: center;
+  gap: 5rem;
+  padding: 2rem;
+}
+
+.modal__inputs label {
+  font-size: 1.5rem;
+  margin: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+}
+.modal__titulo {
+  font-size: 2rem;
+  margin-top: 0.2rem;
+  width: 80%;
+}
+
+.modal input,
+.modal textarea {
+  height: 3rem;
+  border-radius: 1rem;
+  font-size: 1.2rem;
+  padding-left: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.modal textarea:focus {
+  height: 6rem;
+}
+@media (min-width: 480px) {
+  .modal__contenedor {
+    width: 45rem;
+  }
+  .modal__botones {
+    gap: 10rem;
+  }
+  .modal input,
+  .modal textarea {
+    font-size: 1.5rem;
+  }
+  .modal__titulo {
+    font-size: 2.5rem;
+  }
+  .modal__inputs label {
+    font-size: 2rem;
+  }
+}
