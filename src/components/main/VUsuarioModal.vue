@@ -12,10 +12,20 @@
 
 <script setup>
 import { useGeneralStore } from '../../stores/generalStore'
+import { onMounted } from 'vue';
 const generalStore = useGeneralStore()
 
 const cerrarSesion = () => {
   generalStore.setLibroActual(null)
   generalStore.switchUsuarioModal()
 }
+
+const cerrarModal = (event) => {
+  if (event.key === 'Escape') {
+    generalStore.switchUsuarioModal();
+    document.removeEventListener('keydown', cerrarModal);
+  }}
+  onMounted(()=>{
+    document.addEventListener('keydown', cerrarModal);
+  })
 </script>

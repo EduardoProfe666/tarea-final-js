@@ -13,6 +13,7 @@
 <script setup>
 import { eliminarLibro } from '../../../code/controller'
 import { useGeneralStore } from '../../../stores/generalStore'
+import { onMounted } from 'vue';
 const generalStore = useGeneralStore()
 
 const cancelar = () => generalStore.switchEliminar()
@@ -21,4 +22,15 @@ const aceptar = () => {
   generalStore.setLibroActual(null)
   generalStore.switchEliminar()
 }
+
+const cerrarModal = (event) => {
+  if (event.key === 'Escape') {
+    generalStore.switchEliminar()
+    document.removeEventListener('keydown', cerrarModal);
+  }}
+  onMounted(()=>{
+    document.addEventListener('keydown', cerrarModal);
+  })
+
+
 </script>
