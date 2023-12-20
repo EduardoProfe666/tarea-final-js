@@ -42,7 +42,7 @@
 }
 /*Tooltip*/
 
-.tooltip-container{
+.tooltip-container {
   transition: all 0.3s ease-in-out;
   cursor: default;
   position: relative;
@@ -122,3 +122,4 @@ que le asignamos dicha pseudo-clase. Con el objetivo de darle diseno al atributo
   left: -15%;
   transform: rotate(90deg);
 }
+
