@@ -9,9 +9,19 @@
         <li><img src="slider3.png" alt="" /></li>
         <li><img src="slider4.png" alt="" /></li>
       </ul>
+      
     </div>
+    <button type="submit" @click="aceptar()" class="componente-cristal modal__botones">Iniciar</button>
+
   </div>
 </template>
+<script setup>
+import { useRouter } from 'vue-router'
+const router = useRouter()
+const aceptar = async () => {
+  router.push('/')
+}
+</script>
 <style>
 .slider__container {
   background: rgba(255, 200, 161, 0.29);
@@ -25,6 +35,9 @@
   height: auto;
   margin: 1rem auto;
   overflow: hidden;
+}
+.slider__container button{
+    margin-bottom: 2rem;
 }
 .slider__title {
   font-size: 3rem;

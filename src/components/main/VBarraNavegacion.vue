@@ -19,9 +19,8 @@
       </Transition>
     </div>
     <img
-      @click="generalStore.switchUsuarioModal"
       class="barra-navegacion__usuario"
-      src="/icons/user_icon.svg"
+      
     />
   </div>
 </template>
