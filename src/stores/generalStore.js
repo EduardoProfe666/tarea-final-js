@@ -14,6 +14,7 @@ export const useGeneralStore = defineStore('general', {
     getLibroActual(){
       return this.libroActual
     },
+    
     getAniadir(){
       return this.mostrarComponenteAniadir
     },
@@ -37,6 +38,7 @@ export const useGeneralStore = defineStore('general', {
     setLibroActual(libro){
       this.libroActual = libro
     },
+  
     switchAniadir(){
       this.mostrarComponenteAniadir = !this.mostrarComponenteAniadir
     },

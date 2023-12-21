@@ -1,5 +1,6 @@
 import biblioteca from './biblioteca'
 import { useEventEmitter } from './useEventEmitter'
+import { useGeneralStore } from '../stores/generalStore'
 
 export const eliminarLibro = async (id) => {
   await fetch(`http://localhost:3000/books/${id}`, {
@@ -50,8 +51,9 @@ export const editarLibro = async (id, titulo, autor, anio, publicador, contenido
   formData.append('editorial', publicador)
   formData.append('cover', cover)
   formData.append('synopsis', contenido)
-  formData.append('content', pdf)
-  await fetch(`http://localhost:3000/books:${id}`, {
+
+
+  await fetch(`http://localhost:3000/books/${id}`, {
     method: 'PATCH',
     mode: 'cors',
     header: {
@@ -66,6 +68,10 @@ export const editarLibro = async (id, titulo, autor, anio, publicador, contenido
     anno: '',
     publicador: ''
   })
+  const generalStore = useGeneralStore()
+  const libro = await buscarLibroporID(id)
+  generalStore.setLibroActual(libro)
+  
 }
 
 export const buscarLibroporID = async (id) => {
