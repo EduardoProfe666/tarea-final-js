@@ -16,6 +16,8 @@ libros. Además, desarrolla otra función que permita buscar libros por autor.
 Al libro se le agregaron otros atributos a parte de los básicos dados en la problemática: Publicador, Sinopsis, Contenido, Cover (ruta) y Thumbnail (ruta).
 
 Se desarrolló una interfaz de usuario usando el framework progresivo [Vue.js](https://es.vuejs.org/).
+
+Se desarrolló un servicio RestApi y conexion con PostgreSql. El proyecto complementario de la logica se encuentra en el [siguiente repositorio](https://github.com/Acce117/library-back)
      
 ## 👥 Miembros del equipo
 
