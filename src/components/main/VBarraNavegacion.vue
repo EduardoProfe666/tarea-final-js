@@ -2,7 +2,7 @@
   <div class="barra-navegacion">
     <div class="barra-navegacion__titulo centrado">
       <img src="/favicon.png" />
-      <h1>Books</h1>
+      <h1>VueLib</h1>
     </div>
     <div class="barra-navegacion__contenedor-buscador">
       <button @click="generalStore.switchAniadir" class="componente-cristal boton-aniadir">

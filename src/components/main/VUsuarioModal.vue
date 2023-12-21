@@ -13,11 +13,15 @@
 <script setup>
 import { useGeneralStore } from '../../stores/generalStore'
 import { onMounted } from 'vue';
+import {useRouter} from 'vue-router'
+const router = useRouter()
 const generalStore = useGeneralStore()
 
 const cerrarSesion = () => {
   generalStore.setLibroActual(null)
   generalStore.switchUsuarioModal()
+  document.removeEventListener('keydown', cerrarModal);
+  router.push('/login')
 }
 
 const cerrarModal = (event) => {
