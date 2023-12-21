@@ -1,9 +1,8 @@
 <template>
   <div class="modal login-modal">
-    <VSlider />
 
     <form action="" class="componente-cristal modal__contenedor" @submit.prevent="aceptar()">
-      <label class="modal__titulo">Inicia sesión</label>
+      <label class="modal__titulo">Crea una cuenta</label>
       <div class="modal__inputs">
         <label for="usuario">
           <span>Nombre de usuario: </span>
@@ -11,9 +10,8 @@
         </label>
         <label for="contraseña">
           <span>Contraseña: </span>
-          <input type="text" v-model="contrasenia" />
+          <input type="text" v-model="contraseña" />
         </label>
-        <span class="uao" @click="router.push('/createAccount')">¿Aún no te has registrado?</span>
       </div>
       <div class="modal__botones">
         <button type="submit" class="componente-cristal">Aceptar</button>
@@ -22,24 +20,29 @@
   </div>
 </template>
 <script setup>
-import VSlider from './VSlider.vue'
-import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import {logIn} from '../../code/controller'
 const router = useRouter()
-const usuario = ref('')
-const contrasenia = ref('')
-const aceptar = async () => {
-
-  try {router.push('/')
-    /*const user = await logIn(
-      usuario.value,
-      contrasenia.value,
-    )
-    if(user !=null)
-    */
-  } catch (e) {
-    alert(e.message)
-  }
+const aceptar = () => {
+  router.push('/')
 }
 </script>
+
+<style scoped>
+
+.login-modal {
+  background: none;
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
+  flex-direction: column;
+  gap: 3rem;
+}
+.login-modal form {
+
+  height: 30rem;
+}
+@media (min-width: 1200px) {
+  .login-modal {
+    flex-direction: row;
+  }
+}
+</style>

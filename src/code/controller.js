@@ -31,9 +31,26 @@ export const nuevoLibro = async (titulo, autor, anio, publicador, contenido, cov
   useEventEmitter().dispatchEvent('actualizar')
 }
 
-export const editarLibro = async (id, titulo, autor, anio, publicador, contenido) => {
-  biblioteca.validar(titulo, autor, anio, publicador, contenido)
-  biblioteca.editarLibro(id, titulo, autor, anio, publicador, contenido)
+export const editarLibro = async (id, titulo, autor, anio, publicador, contenido, cover, pdf) => {
+  biblioteca.validar(titulo, autor, anio, publicador, contenido, cover, pdf)
+  const formData = new FormData()
+  formData.append("title",titulo)
+  formData.append("author",autor)
+  formData.append("publication_year",anio)
+  formData.append("editorial",publicador)
+  formData.append("cover",cover)
+  formData.append("synopsis",contenido)
+  formData.append("content",pdf)
+  await fetch(`http://localhost:3000/books:${id}`, {
+    method: 'PATCH',
+    mode: 'cors',
+    header: {
+      'Content-Type': 'form-data'
+    },
+    redirect:'follow',
+    body: formData
+  })
+  useEventEmitter().dispatchEvent('actualizar')
 }
 
 export const buscarLibroporID = async (id) => {
@@ -52,4 +69,24 @@ export const solicitarLibros = async (titulo = '', autor = '', anno, publicador 
   const books = await response.json()
   return books
   //    return biblioteca.buscarLibros(titulo, autor, anno, publicador);
+}
+
+export const logIn = async(usuario,contrasenia)=>{
+  const formData = new FormData()
+  formData.append("username",usuario)
+  formData.append("password",contrasenia)
+  const response = await fetch('http://localhost:3000/login',{
+    method: 'POST',
+    mode: 'cors',
+    header: {
+      'Content-Type': 'form-data'
+    },
+    redirect:'follow',
+    body: formData
+  })
+  
+  const cookie = await response.headers.get('set-cookie')
+
+  //const user = (window.atob( ALGO.split('.')[2])).json()
+  //return user
 }
