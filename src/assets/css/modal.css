@@ -24,7 +24,6 @@
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
-  
 }
 .modal__inputs {
   height: 80%;
@@ -52,6 +51,7 @@
 .modal__titulo {
   font-size: 2rem;
   margin-top: 0.2rem;
+  margin-bottom: 1rem;
   width: 80%;
 }
 
@@ -83,5 +83,35 @@
   }
   .modal__inputs label {
     font-size: 2rem;
+  }
+}
+/*Login*/
+
+.login-modal {
+  background: none;
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
+  flex-direction: column;
+  gap: 3rem;
+}
+.login-modal form {
+  height: 35rem;
+}
+.uao {
+  color: whitesmoke;
+  margin-top: 1rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+.uao:hover {
+  text-decoration: underline;
+}
+
+@media (min-width: 1200px) {
+  .uao {
+    font-size: 2rem;
+  }
+  .login-modal {
+    flex-direction: row;
   }
 }

@@ -5,10 +5,10 @@ import vue from '@vitejs/plugin-vue'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/Tarea-2-JS/',
+  base: '/VueLib/',
   plugins: [vue()],
   server: {
-    host: true,
+    host: true
   },
   resolve: {
     alias: {

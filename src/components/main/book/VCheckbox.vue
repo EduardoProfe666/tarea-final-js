@@ -1,47 +1,16 @@
 <template>
-  <div class="barra-navegacion__buscador__filtros componente-cristal">
     <div class="checkbox-contenedor">
-      <input type="checkbox" id="input-1" class="check-input" checked/>
-      <span>Por Título</span>
-    </div>
-    <div class="checkbox-contenedor">
-      <input type="checkbox" id="input-2" class="check-input" checked/>
-      <label for="input-2" class="checkbox">
+      <input type="checkbox" id="favourite" class="check-input" checked/>
+      <label for="favourite" class="checkbox">
         <svg viewBox="0 0 22 16" fill="none">
           <path d="M1 6.85L8.09677 14L21 1" />
         </svg>
       </label>
-      <span>Por Autor</span>
+      <span>Favorito</span>
     </div>
-    <div class="checkbox-contenedor">
-      <input type="checkbox" id="input-3" class="check-input" checked />
-      <label for="input-3" class="checkbox">
-        <svg viewBox="0 0 22 16" fill="none">
-          <path d="M1 6.85L8.09677 14L21 1" />
-        </svg>
-      </label>
-      <span>Por Año de Publicación</span>
-    </div>
-    <div class="checkbox-contenedor">
-      <input type="checkbox" id="input-4" class="check-input" checked/>
-      <label for="input-4" class="checkbox">
-        <svg viewBox="0 0 22 16" fill="none">
-          <path d="M1 6.85L8.09677 14L21 1" />
-        </svg>
-      </label>
-      <span>Por Publicador</span>
-    </div>
-  </div>
 </template>
 
 <style>
-.barra-navegacion__buscador__filtros {
-  position: fixed;
-  top:8rem;
-  align-items: start;
-  flex-direction: column;
-  z-index: 900;
-}
 .checkbox-contenedor {
   margin: 1rem;
   display: flex;

@@ -26,6 +26,16 @@
     transform: scaleX(1);
   }
 }
+@keyframes check {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes ripple {
+  to {
+    transform: scale(1);
+  }
+}
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity ease 250ms;
