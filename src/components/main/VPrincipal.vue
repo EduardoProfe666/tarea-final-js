@@ -6,7 +6,6 @@ import VAniadirLibro from './book/VAniadirLibro.vue'
 import VEliminarLibro from './book/VEliminarLibro.vue'
 import VModificarLibro from './book/VModificarLibro.vue'
 import VFiltrosBuscador from './VFiltrosBuscador.vue'
-import VUsuarioModal from './VUsuarioModal.vue'
 import VPDF from './book/VPDF.vue'
 import { useGeneralStore } from '../../stores/generalStore'
 const generalStore = useGeneralStore()

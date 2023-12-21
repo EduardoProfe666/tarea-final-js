@@ -92,11 +92,11 @@ const cancelar = () => {
 const aceptar = async () => {
   try {
     await nuevoLibro(
-      titulo.value,
-      autor.value,
+      titulo.value.trim(),
+      autor.value.trim(),
       anio.value,
-      publicador.value,
-      contenido.value,
+      publicador.value.trim(),
+      contenido.value.trim(),
       cover.value,
       pdf.value
     )
