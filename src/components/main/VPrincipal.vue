@@ -7,31 +7,30 @@ import VEliminarLibro from './book/VEliminarLibro.vue'
 import VModificarLibro from './book/VModificarLibro.vue'
 import VFiltrosBuscador from './VFiltrosBuscador.vue'
 import VUsuarioModal from './VUsuarioModal.vue'
-//import VPDF from './book/VPDF.vue'
+import VPDF from './book/VPDF.vue'
 import { useGeneralStore } from '../../stores/generalStore'
 const generalStore = useGeneralStore()
 </script>
 
 <template>
   <header>
-    <VBarraNavegacion  />
+    <VBarraNavegacion />
   </header>
-  <main class=" centrado">
+  <main class="centrado">
     <div class="main__content centrado">
       <VEstanteria />
-    <VCarta />
-    <Transition name="fade"><VAniadirLibro v-if="generalStore.getAniadir" /></Transition>
-    <Transition name="fade"><VEliminarLibro v-if="generalStore.getEliminar" /></Transition>
-    <Transition name="fade"
-      ><VModificarLibro v-if="generalStore.getModificar" :libro="generalStore.getLibroActual"
-    /></Transition>
-    <Transition name="fade"><VUsuarioModal v-if="generalStore.getUsuarioModal" /></Transition>
-    <Transition name="fade_from_up"
-      ><VFiltrosBuscador v-if="generalStore.getFiltrosBuscador"
-    /></Transition>
-    <Transition name="fade"><VPDF v-if="generalStore.getLeer" /></Transition>
+      <VCarta />
+      <Transition name="fade"><VAniadirLibro v-if="generalStore.getAniadir" /></Transition>
+      <Transition name="fade"><VEliminarLibro v-if="generalStore.getEliminar" /></Transition>
+      <Transition name="fade"
+        ><VModificarLibro v-if="generalStore.getModificar" :libro="generalStore.getLibroActual"
+      /></Transition>
+      <Transition name="fade"><VUsuarioModal v-if="generalStore.getUsuarioModal" /></Transition>
+      <Transition name="fade_from_up"
+        ><VFiltrosBuscador v-if="generalStore.getFiltrosBuscador"
+      /></Transition>
+      <Transition name="fade"><VPDF v-if="generalStore.getLeer" /></Transition>
     </div>
-   
   </main>
 </template>
 

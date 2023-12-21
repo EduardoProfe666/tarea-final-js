@@ -1,5 +1,11 @@
 import { Libro } from './libro.js'
 import { validarNoNullUndefined } from './utilidades.js'
+import {
+  validarAnnoPublicacion,
+  validarAutor,
+  validarSinopsis,
+  validarTituloPublicador
+} from './validaciones.js'
 
 /**
  * Permite modelar una biblioteca con su listado de libros y las funcionalidades
@@ -39,17 +45,17 @@ class Biblioteca {
    * @param {string | null | undefined} autor
    * @param {number} anno_publicacion
    * @param {string | null | undefined} publicador
-   * @param {string | null | undefined} contenido
+   * @param {string | null | undefined} sinopsis
    * @param {string | null | undefined} cover
    * @param {string | null | undefined} thumbnail
    */
-  editarLibro(id_libro, titulo, autor, anno_publicacion, publicador, contenido, cover, thumbnail) {
+  editarLibro(id_libro, titulo, autor, anno_publicacion, publicador, sinopsis, cover, thumbnail) {
     let libro = this.getListadoLibros()[this.buscarIndiceLibro(id_libro)]
     if (validarNoNullUndefined(titulo)) libro.setTitulo(titulo)
     if (validarNoNullUndefined(autor)) libro.setAutor(autor)
     if (validarNoNullUndefined(anno_publicacion)) libro.setAnnoPublicacion(anno_publicacion)
     if (validarNoNullUndefined(publicador)) libro.setPublicador(publicador)
-    if (validarNoNullUndefined(contenido)) libro.setContenido(contenido)
+    if (validarNoNullUndefined(sinopsis)) libro.setsinopsis(sinopsis)
     if (validarNoNullUndefined(cover)) libro.setCover(cover)
     if (validarNoNullUndefined(thumbnail)) libro.setThumbnail(thumbnail)
     console.log('Libro editado:')
@@ -136,66 +142,61 @@ class Biblioteca {
     for (let libro of libros) libro.imprimir()
   }
 
-
-  validar(titulo, autor, annoPublicacion, publicador, contenido, cover, pdf) {
-    if (
-      validarNoNullUndefined(titulo) &&
-      typeof titulo === 'string' &&
-      titulo.trim().length !== 0
-    ) {
-      if (validarNoNullUndefined(autor) && typeof autor === 'string' && autor.trim().length !== 0) {
-        if (validarNoNullUndefined(annoPublicacion) && typeof annoPublicacion === 'number') {
-          if (
-            validarNoNullUndefined(publicador) &&
-            typeof publicador === 'string' &&
-            publicador.trim().length !== 0
-          ) {
-            if (
-              validarNoNullUndefined(contenido) &&
-              typeof contenido === 'string' &&
-              contenido.trim().length !== 0
-            ) {
+  validar(titulo, autor, annoPublicacion, publicador, sinopsis, cover, pdf) {
+    if (validarTituloPublicador(titulo.trim()) && typeof titulo === 'string') {
+      if (validarAutor(autor.trim()) && typeof autor === 'string') {
+        if (validarAnnoPublicacion(annoPublicacion) && typeof annoPublicacion === 'number') {
+          if (validarTituloPublicador(publicador.trim()) && typeof publicador === 'string') {
+            if (validarSinopsis(sinopsis.trim()) && typeof sinopsis === 'string') {
               if (validarNoNullUndefined(pdf) && pdf instanceof File) {
                 // Nuevo *** Verificar extensión del archivo PDF (pdf) y tamaño (entre 0 y 20 MB)
-                if (pdf.name.toLowerCase().endsWith('.pdf') && pdf.size > 0 && pdf.size < 20 * 1024 * 1024) {
+                if (
+                  pdf.name.toLowerCase().endsWith('.pdf') &&
+                  pdf.size > 0 &&
+                  pdf.size < 20 * 1024 * 1024
+                ) {
                   if (validarNoNullUndefined(cover) && cover instanceof File) {
                     //Nuevo *** Verificar extensión del archivo de portada (cover) y tamaño (entre 0 y 4 MB)
                     if (
-                      (cover.name.toLowerCase().endsWith('.jpg') || cover.name.toLowerCase().endsWith('.png')) &&
-                      cover.size > 0 && cover.size < 4 * 1024 * 1024
+                      (cover.name.toLowerCase().endsWith('.jpg') ||
+                        cover.name.toLowerCase().endsWith('.png')) &&
+                      cover.size > 0 &&
+                      cover.size < 4 * 1024 * 1024
                     ) {
-                      console.log('Libro validado.');
+                      console.log('Libro validado.')
                     } else {
-                      throw new Error('El archivo de portada no cumple con los requisitos de extensión o tamaño');
+                      throw new Error(
+                        'El archivo de portada no cumple con los requisitos de extensión o tamaño'
+                      )
                     }
                   } else {
-                    throw new Error('El archivo de portada no es válido');
+                    throw new Error('El archivo de portada no es válido')
                   }
                 } else {
-                  throw new Error('El archivo PDF no cumple con los requisitos de extensión o tamaño');
+                  throw new Error(
+                    'El archivo PDF no cumple con los requisitos de extensión o tamaño'
+                  )
                 }
               } else {
-                throw new Error('El archivo PDF no es válido');
+                throw new Error('El archivo PDF no es válido')
               }
             } else {
-              throw new Error('El contenido no es válido');
+              throw new Error('El sinopsis no es válido')
             }
           } else {
-            throw new Error('El publicador no es válido');
+            throw new Error('El publicador no es válido')
           }
         } else {
-          throw new Error('El año de publicación no es válido');
+          throw new Error('El año de publicación no es válido')
         }
       } else {
-        throw new Error('El autor no es válido');
+        throw new Error('El autor no es válido')
       }
     } else {
-      throw new Error('El título no es válido');
+      throw new Error('El título no es válido')
     }
   }
 }
-
-
 
 const biblioteca = new Biblioteca()
 
