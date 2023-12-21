@@ -26,6 +26,7 @@ html {
 body,
 html {
   height: 95vh;
+  margin-top: 0;
 }
 
 #app {
