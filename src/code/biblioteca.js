@@ -136,7 +136,8 @@ class Biblioteca {
     for (let libro of libros) libro.imprimir()
   }
 
-  validar(titulo, autor, annoPublicacion, publicador, contenido) {
+
+  validar(titulo, autor, annoPublicacion, publicador, contenido, cover, pdf) {
     if (
       validarNoNullUndefined(titulo) &&
       typeof titulo === 'string' &&
@@ -154,14 +155,47 @@ class Biblioteca {
               typeof contenido === 'string' &&
               contenido.trim().length !== 0
             ) {
-              console.log(`libro validado`)
-            } else throw new Error('El contenido no es válido')
-          } else throw new Error('El publicador no es válido')
-        } else throw new Error('El año de publicación no es válido')
-      } else throw new Error('El autor no es válido')
-    } else throw new Error('El título no es válido')
+              if (validarNoNullUndefined(pdf) && pdf instanceof File) {
+                // Nuevo *** Verificar extensión del archivo PDF (pdf) y tamaño (entre 0 y 20 MB)
+                if (pdf.name.toLowerCase().endsWith('.pdf') && pdf.size > 0 && pdf.size < 20 * 1024 * 1024) {
+                  if (validarNoNullUndefined(cover) && cover instanceof File) {
+                    //Nuevo *** Verificar extensión del archivo de portada (cover) y tamaño (entre 0 y 4 MB)
+                    if (
+                      (cover.name.toLowerCase().endsWith('.jpg') || cover.name.toLowerCase().endsWith('.png')) &&
+                      cover.size > 0 && cover.size < 4 * 1024 * 1024
+                    ) {
+                      console.log('Libro validado.');
+                    } else {
+                      throw new Error('El archivo de portada no cumple con los requisitos de extensión o tamaño');
+                    }
+                  } else {
+                    throw new Error('El archivo de portada no es válido');
+                  }
+                } else {
+                  throw new Error('El archivo PDF no cumple con los requisitos de extensión o tamaño');
+                }
+              } else {
+                throw new Error('El archivo PDF no es válido');
+              }
+            } else {
+              throw new Error('El contenido no es válido');
+            }
+          } else {
+            throw new Error('El publicador no es válido');
+          }
+        } else {
+          throw new Error('El año de publicación no es válido');
+        }
+      } else {
+        throw new Error('El autor no es válido');
+      }
+    } else {
+      throw new Error('El título no es válido');
+    }
   }
 }
+
+
 
 const biblioteca = new Biblioteca()
 
