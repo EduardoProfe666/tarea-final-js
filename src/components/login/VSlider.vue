@@ -1,6 +1,6 @@
 <template>
   <div class="componente-cristal slider__container">
-    <h1 class="slider__title">Bienvenido a Books!</h1>
+    <h1 class="slider__title">Bienvenido a VueLib!</h1>
     <h1 class="slider__subtitle">Inicia para disfrutar de estos libros y más</h1>
     <div class="slider-frame">
       <ul>
