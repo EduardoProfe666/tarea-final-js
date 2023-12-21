@@ -1,9 +1,11 @@
 <template>
+  
   <form
     action=""
     class="barra-navegacion__buscador__filtros componente-cristal"
     @submit.prevent="enviarEvento"
   >
+  <h1 class="barra-navegacion__buscador__filtros_h1_buscar">Buscar</h1>
     <input type="text" placeholder="Título" class="input-busqueda" v-model="titulo" />
     <input type="text" placeholder="Autor" class="input-busqueda" v-model="autor" />
     <input
@@ -29,7 +31,15 @@
         class="componente-cristal boton-refrescar"
         @click="refrescarBuscadores()"
       >
+
         <img src="/icons/refresh_icon.png" />
+      </button>
+
+      
+      <button 
+       type="button"
+        class="componente-cristal boton-salir"
+        @click="salir()">X
       </button>
     </div>
   </form>
@@ -62,6 +72,10 @@ const refrescarBuscadores = () => {
   publicador.value = ''
   enviarEvento()
 }
+
+const salir = () =>{
+  generalStore.setFiltrosBuscador(false)
+}
 const cerrarModal = (event) => {
   if (event.key === 'Escape') {
     generalStore.setFiltrosBuscador(false);
@@ -72,6 +86,10 @@ const cerrarModal = (event) => {
   })
 </script>
 <style>
+.barra-navegacion__buscador__filtros_h1_buscar{
+  font-size: 2.7rem;
+  margin-top: 1.7rem;
+}
 .barra-navegacion__buscador__filtros {
   position: fixed;
   top: 8rem;
@@ -79,6 +97,7 @@ const cerrarModal = (event) => {
   flex-direction: column;
   z-index: 900;
   gap: 1rem;
+  
 }
 .barra-navegacion__buscador__filtros__botones {
   display: flex;
@@ -93,5 +112,13 @@ const cerrarModal = (event) => {
 .boton-refrescar:active img {
   animation-duration: 250ms;
   animation-name: rotate;
+}
+
+.boton-salir{
+  position: absolute;
+  top: 0.6rem;
+  right: 0.7rem;
+  font-size: 1.2rem;
+  border-radius: 30%;
 }
 </style>
