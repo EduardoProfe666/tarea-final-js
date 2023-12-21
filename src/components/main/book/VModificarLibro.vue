@@ -96,11 +96,11 @@ const aceptar = async () => {
   try {
     await editarLibro(
       props.libro.id_libro,
-      titulo.value,
-      autor.value,
+      titulo.value.trim(),
+      autor.value.trim(),
       anio.value,
-      publicador.value,
-      contenido.value,
+      publicador.value.trim(),
+      contenido.value.trim(),
       cover.value,
       pdf.value
     )
