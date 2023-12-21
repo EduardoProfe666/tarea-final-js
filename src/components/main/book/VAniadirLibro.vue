@@ -46,7 +46,7 @@
   </div>
 </template>
 <script setup>
-import { ref, watch,onMounted } from 'vue';
+import { ref,onMounted } from 'vue';
 import { nuevoLibro } from '../../../code/controller';
 import { useGeneralStore } from '../../../stores/generalStore';
 const generalStore = useGeneralStore()
