@@ -2,7 +2,7 @@
   <div class="modal">
     <div class="componente-cristal modal__contenedor">
       <img src="/icons/user_icon.svg" alt="usuario">
-      <label class="modal__titulo">Usuario</label>
+      <label class="modal__titulo">Usuario<img class="edit-user-icon" src="icons/edit_icon_white.png"></label>
       <div class="modal__botones">
         <button class="componente-cristal" @click="cerrarSesion()">Cerrar Sesión</button>
       </div>
@@ -33,3 +33,16 @@ const cerrarModal = (event) => {
     document.addEventListener('keydown', cerrarModal);
   })
 </script>
+<style>
+.edit-user-icon{
+ cursor: pointer;
+ transition: all ease 50ms;
+}
+.edit-user-icon:hover{
+  scale: 1.2;
+}
+.edit-user-icon:active{
+  opacity: 0.5;
+  scale: 1.4;
+}
+</style>

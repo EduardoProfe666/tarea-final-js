@@ -64,8 +64,6 @@
 import { ref, onMounted } from 'vue'
 import { editarLibro } from '../../../code/controller'
 import { useGeneralStore } from '../../../stores/generalStore'
-import { Libro } from '../../../code/libro'
-
 const generalStore = useGeneralStore()
 const props = defineProps({
   libro: Object
@@ -75,8 +73,8 @@ const autor = ref(props.libro.autor)
 const anio = ref(props.libro.anno_publicacion)
 const publicador = ref(props.libro.publicador)
 const contenido = ref(props.libro.sinopsis)
-const inputCover = ref(props.libro.cover_url)
-const inputPDF = ref(props.libro.contenido_url)
+const inputCover = ref()
+const inputPDF = ref()
 const cover = ref(null)
 const pdf = ref(null)
 
@@ -97,12 +95,14 @@ const cancelar = () => {
 const aceptar = async () => {
   try {
     await editarLibro(
-      props.libro.getId(),
+      props.libro.id_libro,
       titulo.value,
       autor.value,
       anio.value,
       publicador.value,
-      contenido.value
+      contenido.value,
+      cover.value,
+      pdf.value
     )
     const libro = props.libro
     generalStore.setLibroActual(null)

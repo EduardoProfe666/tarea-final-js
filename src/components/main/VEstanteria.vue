@@ -19,7 +19,7 @@ import { useLibrosStore } from '../../stores/librosStore'
 
 const librosStore = useLibrosStore()
 
-solicitarLibros().then((response) => librosStore.setListaLibros(response))
+solicitarLibros('', '', '', '').then((response) => librosStore.setListaLibros(response))
 useEventEmitter().listen('actualizar', async (event) => {
   let { titulo, autor, anno, publicador } = event.detail || [null, null, null, null]
   solicitarLibros(titulo, autor, anno, publicador).then((response) =>

@@ -30,14 +30,14 @@ const router = useRouter()
 const usuario = ref('')
 const contrasenia = ref('')
 const aceptar = async () => {
-
-  try {router.push('/')
-    /*const user = await logIn(
+  router.push('/')
+  try{ /*ESTO ESTA A MEDIO IMPLEMENTAR, DESCOMENTAR Y COMENTAR LA LINEA DE ARRIBA
+    const user = await logIn(
       usuario.value,
       contrasenia.value,
     )
     if(user !=null)
-    */
+    router.push('/')*/
   } catch (e) {
     alert(e.message)
   }

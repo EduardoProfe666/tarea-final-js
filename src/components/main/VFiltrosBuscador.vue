@@ -70,7 +70,12 @@ const refrescarBuscadores = () => {
   autor.value = ''
   anno.value = ''
   publicador.value = ''
-  enviarEvento()
+  useEventEmitter().dispatchEvent('actualizar', {
+    titulo: titulo.value,
+    autor: autor.value,
+    anno: anno.value,
+    publicador: publicador.value
+  })
 }
 
 const salir = () =>{
