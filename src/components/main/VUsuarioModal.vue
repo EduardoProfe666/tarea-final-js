@@ -20,6 +20,7 @@ const generalStore = useGeneralStore()
 const cerrarSesion = () => {
   generalStore.setLibroActual(null)
   generalStore.switchUsuarioModal()
+  document.removeEventListener('keydown', cerrarModal);
   router.push('/login')
 }
 
